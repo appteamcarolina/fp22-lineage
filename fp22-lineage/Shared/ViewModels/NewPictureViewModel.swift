@@ -12,7 +12,7 @@ class NewPictureViewModel: ObservableObject {
     @Published var currentLine = Line()
     @Published var storedLine = Line()
     @Published var changed = false
-    @Published var clothing = Clothing(image: Image("shirt"), mult: 1, line: Line())
+    @Published var clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: Line())
     
     func changeDrawing(value: DragGesture.Value) {
         let newPoint = value.location
@@ -25,6 +25,6 @@ class NewPictureViewModel: ObservableObject {
         storedLine = currentLine
         currentLine = Line(points: [])
         changed = true
-        clothing = Clothing(image: Image("shirt"), mult: 1, line: storedLine)
+        clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: storedLine)
     }
 }

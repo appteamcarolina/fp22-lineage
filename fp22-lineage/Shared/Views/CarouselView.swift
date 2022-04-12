@@ -23,7 +23,7 @@ struct CarouselView: View {
                 .clipShape(vm.clothing.border)
                 .border(Color.black, width: 2)
         } */
-        Text("Trying")
+        Text("Insert Carousel here")
     }
 }
 
