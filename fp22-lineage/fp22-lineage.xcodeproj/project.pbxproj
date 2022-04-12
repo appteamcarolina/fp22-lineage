@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF1280528E700AFA03B /* NewPictureView.swift */; };
+		707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF1280528E700AFA03B /* NewPictureView.swift */; };
+		707B8FF52805299400AFA03B /* Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF42805299400AFA03B /* Outline.swift */; };
+		707B8FF62805299400AFA03B /* Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF42805299400AFA03B /* Outline.swift */; };
+		707B8FF8280529C200AFA03B /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF7280529C200AFA03B /* Line.swift */; };
+		707B8FF9280529C200AFA03B /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF7280529C200AFA03B /* Line.swift */; };
+		707B8FFB28052C6900AFA03B /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FFA28052C6900AFA03B /* CarouselView.swift */; };
+		707B8FFC28052C6900AFA03B /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FFA28052C6900AFA03B /* CarouselView.swift */; };
 		707DA70C27FCF65A00E35A83 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DA70B27FCF65A00E35A83 /* Tests_iOS.swift */; };
 		707DA70E27FCF65A00E35A83 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DA70D27FCF65A00E35A83 /* Tests_iOSLaunchTests.swift */; };
 		707DA71827FCF65A00E35A83 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DA71727FCF65A00E35A83 /* Tests_macOS.swift */; };
@@ -37,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		707B8FF1280528E700AFA03B /* NewPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPictureView.swift; sourceTree = "<group>"; };
+		707B8FF42805299400AFA03B /* Outline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outline.swift; sourceTree = "<group>"; };
+		707B8FF7280529C200AFA03B /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		707B8FFA28052C6900AFA03B /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		707DA6F327FCF65900E35A83 /* fp22_lineageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fp22_lineageApp.swift; sourceTree = "<group>"; };
 		707DA6F427FCF65900E35A83 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		707DA6F527FCF65900E35A83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +112,10 @@
 				707DA6F327FCF65900E35A83 /* fp22_lineageApp.swift */,
 				707DA6F427FCF65900E35A83 /* ContentView.swift */,
 				707DA6F527FCF65900E35A83 /* Assets.xcassets */,
+				707B8FF1280528E700AFA03B /* NewPictureView.swift */,
+				707B8FF42805299400AFA03B /* Outline.swift */,
+				707B8FF7280529C200AFA03B /* Line.swift */,
+				707B8FFA28052C6900AFA03B /* CarouselView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -299,8 +315,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707B8FF52805299400AFA03B /* Outline.swift in Sources */,
 				707DA71D27FCF65A00E35A83 /* ContentView.swift in Sources */,
 				707DA71B27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
+				707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */,
+				707B8FFB28052C6900AFA03B /* CarouselView.swift in Sources */,
+				707B8FF8280529C200AFA03B /* Line.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +328,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707B8FF62805299400AFA03B /* Outline.swift in Sources */,
 				707DA71E27FCF65A00E35A83 /* ContentView.swift in Sources */,
 				707DA71C27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
+				707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */,
+				707B8FFC28052C6900AFA03B /* CarouselView.swift in Sources */,
+				707B8FF9280529C200AFA03B /* Line.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
