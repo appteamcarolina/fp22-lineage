@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var Closet = [Clothing]()
+    
     var body: some View {
         TabView {
             CarouselView()

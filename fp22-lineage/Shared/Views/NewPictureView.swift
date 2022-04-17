@@ -9,7 +9,8 @@ import SwiftUI
 
 struct NewPictureView: View {
     
-    @StateObject private var vm = NewPictureViewModel()
+    //@Binding var Closet: [[Clothing]]
+    @StateObject var vm = NewPictureViewModel()
     
     var body: some View {
         ZStack {
@@ -43,8 +44,10 @@ struct NewPictureView: View {
     }
 }
 
+/*
 struct NewPictureView_Previews: PreviewProvider {
     static var previews: some View {
         NewPictureView()
     }
 }
+ */
