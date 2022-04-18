@@ -8,47 +8,54 @@
 import SwiftUI
 
 struct CarouselView: View {
+    
+    @ObservedObject var CC : ClosetController
     @StateObject var vm = CarouselViewModel()
-    @State var index = 0
 
     var body: some View {
         VStack {
-            Button {
-                vm.getCloset()
-            } label: {
-                Text("Update Closet")
-            }
             HStack {
                 Button {
-                    index -= 1
-                    index = index%vm.Closet.count
+                    vm.changeShirtIndex(val: -1, len: CC.Closet.count)
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "arrow.left.circle")
                 }
                 ZStack {
-                    if (vm.Closet.count == 0) {
+                    if (CC.Closet.count == 0) {
                         Text("No clothing")
                     } else {
-                        Image(uiImage: vm.Closet[index].image)
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(vm.Closet[0].border)
-                            .border(Color.red, width: 2)
+                        let clothing = CC.getClothing(index: vm.shirtIndex, mult: 0.5)
+                        VStack {
+                            Spacer()
+                                .frame(height: 240)
+                            Image("shorts")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 210, height: 280)
+                        }
+                        VStack {
+                            Image(uiImage: clothing.image)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(clothing.border)
+                                .frame(width: 210, height: 280)
+                            Spacer()
+                                .frame(height: 240)
+                        }
                     }
                 }
                 Button {
-                    index += 1
-                    index = index%vm.Closet.count
+                    vm.changeShirtIndex(val: 1, len: CC.Closet.count)
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "arrow.right.circle")
                 }
             }
             Button {
-                vm.clearCloset()
+                CC.clearCloset()
+                vm.resetShirtIndex()
             } label: {
                 Text("Clear Closet")
             }
-
         }
     }
 }

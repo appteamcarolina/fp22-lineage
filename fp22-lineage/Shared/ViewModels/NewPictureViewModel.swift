@@ -9,14 +9,13 @@ import Foundation
 import SwiftUI
 
 class NewPictureViewModel: ObservableObject {
-    @Published var Closet = [Clothing]()
+    @ObservedObject var CC: ClosetController
     @Published var currentLine = Line()
     @Published var storedLine = Line()
     @Published var changed = false
-    @Published var clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: Line())
-    
-    init() {
-        getCloset()
+    @Published var clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: Line(), photoChosen: false)
+    init(CC: ClosetController) {
+        self.CC = CC
     }
     
     func changeDrawing(value: DragGesture.Value) {
@@ -30,22 +29,13 @@ class NewPictureViewModel: ObservableObject {
         storedLine = currentLine
         currentLine = Line(points: [])
         changed = true
-        clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: storedLine)
-        Closet.append(clothing)
-        saveCloset()
+        clothing.line = storedLine
+        CC.Closet.append(clothing)
+        CC.saveCloset()
     }
     
-    func getCloset() {
-        guard
-            let data = UserDefaults.standard.data(forKey: "Closet"),
-            let savedCloset = try? JSONDecoder().decode([Clothing].self, from: data)
-        else { return }
-        self.Closet = savedCloset
-    }
-    
-    func saveCloset() {
-        if let encodedCloset = try? JSONEncoder().encode(Closet) {
-            UserDefaults.standard.set(encodedCloset, forKey: "Closet")
-        }
+    func setPhoto() {
+        clothing.photoChosen = true
+        clothing.choosingPhoto = true
     }
 }

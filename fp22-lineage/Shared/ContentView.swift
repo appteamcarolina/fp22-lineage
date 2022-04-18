@@ -9,19 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var Closet = [Clothing]()
+    
+    @StateObject var CC = ClosetController()
+    @State var selectedTab: Int = 1
     
     var body: some View {
-        TabView {
-            CarouselView()
+        TabView(selection: $selectedTab) {
+            CarouselView(CC: CC)
                 .tabItem {
                     Label("Make Outfit", systemImage: "house")
                 }
+                .tag(1)
             
-            NewPictureView()
+            NewPictureView(CC: CC)
                 .tabItem {
                     Label("Add Clothing", systemImage: "plus")
                 }
+                .tag(2)
+        }
+        .onChange(of: selectedTab) { newValue in
+            CC.getCloset()
         }
     }
 }
