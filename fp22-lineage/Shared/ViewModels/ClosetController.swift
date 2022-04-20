@@ -8,8 +8,8 @@
 import Foundation
 
 class ClosetController: ObservableObject {
-    
-    @Published var Closet = [Clothing]()
+     
+    @Published var Closet = ["Hat":[Clothing](), "Jacket":[Clothing](), "Top":[Clothing](), "Bottoms":[Clothing](), "Shoes":[Clothing]()]
     
     init() {
         getCloset()
@@ -18,7 +18,7 @@ class ClosetController: ObservableObject {
     func getCloset() {
         guard
             let data = UserDefaults.standard.data(forKey: "Closet"),
-            let savedCloset = try? JSONDecoder().decode([Clothing].self, from: data)
+            let savedCloset = try? JSONDecoder().decode([String: [Clothing]].self, from: data)
         else { return }
         self.Closet = savedCloset
     }
@@ -30,16 +30,16 @@ class ClosetController: ObservableObject {
     }
     
     func clearCloset() {
-        Closet = [Clothing]()
+        Closet = ["Hat":[Clothing](), "Jacket":[Clothing](), "Top":[Clothing](), "Bottoms":[Clothing](), "Shoes":[Clothing]()]
         saveCloset()
     }
     
-    func getClothing(index: Int) -> Clothing {
-        return Clothing(image: Closet[index].image, mult: Closet[index].mult, line: Closet[index].line, photoChosen: true, choosingPhoto: true)
+    func getClothing(type: String, index: Int) -> Clothing {
+        return Clothing(image: (Closet[type]?[index].image)!, mult: (Closet[type]?[index].mult)!, line: (Closet[type]?[index].line)!, type: (Closet[type]?[index].type)!, location: (Closet[type]?[index].location)!, photoChosen: true, choosingPhoto: true)
     }
     
     func addClothing(clothing: Clothing) {
-        Closet.append(clothing)
+        Closet[clothing.type]?.append(clothing)
         saveCloset()
     }
 }

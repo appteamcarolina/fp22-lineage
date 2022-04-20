@@ -110,18 +110,6 @@ struct NewPictureView: View {
                             .frame(width: 420, height: 560)
                             
                             VStack {
-                                /*
-                                NavigationLink(destination: PreviewView(CC: CC, clothing: clothing, selectedTab: $selectedTab)) {
-                                    Image(systemName: "checkmark.circle")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .background(Color.green)
-                                        .clipShape(Circle())
-                                        .padding(2)
-                                }
-                                 */
                                 Button {
                                     self.showPreview = true
                                 } label: {
@@ -172,6 +160,7 @@ struct NewPictureView: View {
                     clothing = Clothing(mult: 1, line: defaultLine)
                     clothing = vm.resetDrawing(clothing: clothing)
                     selected = false
+                    CC.saveCloset()
                 }) {
                     PreviewView(CC: CC, clothing: clothing, selectedTab: $selectedTab, showPreview: $showPreview)
                 }

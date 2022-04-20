@@ -9,7 +9,40 @@ import Foundation
 
 class CarouselViewModel: ObservableObject {
     
+    @Published var hatIndex: Int = 0
+    @Published var jacketIndex: Int = 0
     @Published var topIndex: Int = 0
+    @Published var bottomsIndex: Int = 0
+    @Published var shoesIndex: Int = 0
+    
+    
+    func reset() {
+        hatIndex = 0
+        jacketIndex = 0
+        topIndex = 0
+        bottomsIndex = 0
+        shoesIndex = 0
+    }
+    
+    func changeHatIndex(val: Int, len: Int) {
+        if len > 0 {
+            if hatIndex + val < 0 {
+                hatIndex = len-abs(val)
+            } else {
+                hatIndex = (hatIndex + val)%len
+            }
+        }
+    }
+    
+    func changeJacketIndex(val: Int, len: Int) {
+        if len > 0 {
+            if jacketIndex + val < 0 {
+                jacketIndex = len-abs(val)
+            } else {
+                jacketIndex = (jacketIndex + val)%len
+            }
+        }
+    }
     
     func changeTopIndex(val: Int, len: Int) {
         if len > 0 {
@@ -20,7 +53,24 @@ class CarouselViewModel: ObservableObject {
             }
         }
     }
-    func resetTopIndex() {
-        topIndex = 0
+    
+    func changeBottomsIndex(val: Int, len: Int) {
+        if len > 0 {
+            if bottomsIndex + val < 0 {
+                bottomsIndex = len-abs(val)
+            } else {
+                bottomsIndex = (bottomsIndex + val)%len
+            }
+        }
+    }
+    
+    func changeShoesIndex(val: Int, len: Int) {
+        if len > 0 {
+            if shoesIndex + val < 0 {
+                shoesIndex = len-abs(val)
+            } else {
+                shoesIndex = (shoesIndex + val)%len
+            }
+        }
     }
 }

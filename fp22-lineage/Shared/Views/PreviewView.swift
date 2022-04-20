@@ -9,6 +9,15 @@ import SwiftUI
 
 struct PreviewView: View {
     
+    @State private var location: CGPoint = CGPoint(x: 210, y: 280)
+    
+    var simpleDrag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                self.location = value.location
+            }
+    }
+
     @Binding var selectedTab: Int
     @Binding var showPreview: Bool
     
@@ -27,7 +36,8 @@ struct PreviewView: View {
     }
     var newClothing: Clothing {
         get {
-            clothing.updateMult(mult: mult)
+            let intermediate = clothing.updateMult(mult: mult)
+            return intermediate.updateLocation(location: location)
         }
     }
     
@@ -41,17 +51,23 @@ struct PreviewView: View {
     var body: some View {
         VStack {
             ZStack {
+                Image("dummy")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 420, height: 560)
                 Image(uiImage: newClothing.image)
                     .resizable()
                     .scaledToFit()
                     .clipShape(newClothing.border)
                     .frame(width: width, height: height)
+                    .position(newClothing.location)
+                    .gesture(simpleDrag)
             }.frame(width: 420, height: 560)
             HStack {
-                Text("Adjust size using slider")
+                Text("Adjust size with slider below!")
                     .font(.title3)
                 Spacer()
-                    .frame(width: 20)
+                    .frame(width: 10)
                 Button {
                     CC.addClothing(clothing: newClothing)
                     self.showPreview = false
@@ -59,7 +75,7 @@ struct PreviewView: View {
                 } label: {
                     Image(systemName: "checkmark.circle")
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 25, height: 25)
                         .scaledToFit()
                         .foregroundColor(.white)
                         .background(Color.green)
@@ -67,8 +83,7 @@ struct PreviewView: View {
                         .padding(2)
                 }
             }
-            Slider(value: $mult, in: 0.3...1.2)
-                .padding(5)
+            Slider(value: $mult, in: 0.3...1.5)
         }
     }
 }
