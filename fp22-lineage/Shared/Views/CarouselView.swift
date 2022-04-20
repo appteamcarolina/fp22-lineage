@@ -14,42 +14,35 @@ struct CarouselView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Button {
-                    vm.changeShirtIndex(val: -1, len: CC.Closet.count)
-                } label: {
-                    Image(systemName: "arrow.left.circle")
+            ZStack {
+                if (CC.Closet.count == 0) {
+                    Text("No clothing")
+                } else {
+                    let clothing = CC.getClothing(index: vm.shirtIndex)
+                    Image(uiImage: clothing.image)
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(clothing.border)
+                        .frame(width: clothing.width, height: clothing.height)
                 }
-                ZStack {
-                    if (CC.Closet.count == 0) {
-                        Text("No clothing")
-                    } else {
-                        let clothing = CC.getClothing(index: vm.shirtIndex, mult: 0.5)
-                        VStack {
-                            Spacer()
-                                .frame(height: 240)
-                            Image("shorts")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 210, height: 280)
-                        }
-                        VStack {
-                            Image(uiImage: clothing.image)
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(clothing.border)
-                                .frame(width: 210, height: 280)
-                            Spacer()
-                                .frame(height: 240)
-                        }
+                HStack {
+                    Spacer()
+                        .frame(width: 20)
+                    Button {
+                        vm.changeShirtIndex(val: -1, len: CC.Closet.count)
+                    } label: {
+                        Image(systemName: "arrow.left.circle")
                     }
+                    Spacer()
+                    Button {
+                        vm.changeShirtIndex(val: 1, len: CC.Closet.count)
+                    } label: {
+                        Image(systemName: "arrow.right.circle")
+                    }
+                    Spacer()
+                        .frame(width: 20)
                 }
-                Button {
-                    vm.changeShirtIndex(val: 1, len: CC.Closet.count)
-                } label: {
-                    Image(systemName: "arrow.right.circle")
-                }
-            }
+            }.frame(width: 420, height: 560)
             Button {
                 CC.clearCloset()
                 vm.resetShirtIndex()
@@ -57,6 +50,8 @@ struct CarouselView: View {
                 Text("Clear Closet")
             }
         }
+        .navigationBarItems(leading: Image(systemName: "house"), trailing: NavigationLink(destination: NewPictureView(CC:CC)) { Image(systemName: "plus") })
+        .navigationBarBackButtonHidden(true)
     }
 }
 

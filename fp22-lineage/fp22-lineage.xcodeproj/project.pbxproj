@@ -11,6 +11,8 @@
 		70179034280CA28500ECADDB /* ClosetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70179032280CA28500ECADDB /* ClosetController.swift */; };
 		70179036280CB43D00ECADDB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70179035280CB43D00ECADDB /* ImagePicker.swift */; };
 		70179037280CB43D00ECADDB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70179035280CB43D00ECADDB /* ImagePicker.swift */; };
+		7017903A280F64E000ECADDB /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70179039280F64E000ECADDB /* PreviewView.swift */; };
+		7017903B280F64E000ECADDB /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70179039280F64E000ECADDB /* PreviewView.swift */; };
 		707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF1280528E700AFA03B /* NewPictureView.swift */; };
 		707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF1280528E700AFA03B /* NewPictureView.swift */; };
 		707B8FF52805299400AFA03B /* Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B8FF42805299400AFA03B /* Outline.swift */; };
@@ -57,6 +59,8 @@
 /* Begin PBXFileReference section */
 		70179032280CA28500ECADDB /* ClosetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetController.swift; sourceTree = "<group>"; };
 		70179035280CB43D00ECADDB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		70179038280E2B9F00ECADDB /* fp22-lineage--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "fp22-lineage--iOS--Info.plist"; sourceTree = "<group>"; };
+		70179039280F64E000ECADDB /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		707B8FF1280528E700AFA03B /* NewPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPictureView.swift; sourceTree = "<group>"; };
 		707B8FF42805299400AFA03B /* Outline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outline.swift; sourceTree = "<group>"; };
 		707B8FF7280529C200AFA03B /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			children = (
 				707B8FF1280528E700AFA03B /* NewPictureView.swift */,
 				707B8FFA28052C6900AFA03B /* CarouselView.swift */,
+				70179039280F64E000ECADDB /* PreviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 		707DA6ED27FCF65900E35A83 = {
 			isa = PBXGroup;
 			children = (
+				70179038280E2B9F00ECADDB /* fp22-lineage--iOS--Info.plist */,
 				707DA6F227FCF65900E35A83 /* Shared */,
 				707DA70127FCF65A00E35A83 /* macOS */,
 				707DA70A27FCF65A00E35A83 /* Tests iOS */,
@@ -364,6 +370,7 @@
 				707DA71D27FCF65A00E35A83 /* ContentView.swift in Sources */,
 				707DA71B27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
 				707B900D2805FC9D00AFA03B /* CarouselViewModel.swift in Sources */,
+				7017903A280F64E000ECADDB /* PreviewView.swift in Sources */,
 				707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */,
 				707B8FFB28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70179036280CB43D00ECADDB /* ImagePicker.swift in Sources */,
@@ -382,6 +389,7 @@
 				707DA71E27FCF65A00E35A83 /* ContentView.swift in Sources */,
 				707DA71C27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
 				707B900E2805FC9D00AFA03B /* CarouselViewModel.swift in Sources */,
+				7017903B280F64E000ECADDB /* PreviewView.swift in Sources */,
 				707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */,
 				707B8FFC28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70179037280CB43D00ECADDB /* ImagePicker.swift in Sources */,
@@ -544,6 +552,9 @@
 				DEVELOPMENT_TEAM = HL49B4JJPC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fp22-lineage--iOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use the camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -574,6 +585,9 @@
 				DEVELOPMENT_TEAM = HL49B4JJPC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fp22-lineage--iOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use the camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

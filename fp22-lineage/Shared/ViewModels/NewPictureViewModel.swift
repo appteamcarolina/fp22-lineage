@@ -12,8 +12,7 @@ class NewPictureViewModel: ObservableObject {
     @ObservedObject var CC: ClosetController
     @Published var currentLine = Line()
     @Published var storedLine = Line()
-    @Published var changed = false
-    @Published var clothing = Clothing(image: UIImage(imageLiteralResourceName: "shirt"), mult: 1, line: Line(), photoChosen: false)
+    
     init(CC: ClosetController) {
         self.CC = CC
     }
@@ -24,18 +23,23 @@ class NewPictureViewModel: ObservableObject {
         storedLine = currentLine
     }
     
-    func endDrawing() {
+    func endDrawing(clothing: Clothing) -> Clothing {
         currentLine.points.append(currentLine.points[0])
         storedLine = currentLine
         currentLine = Line(points: [])
-        changed = true
-        clothing.line = storedLine
-        CC.Closet.append(clothing)
-        CC.saveCloset()
+        let clothingNew = clothing.updateLine(line: storedLine)
+        return clothingNew
     }
     
-    func setPhoto() {
-        clothing.photoChosen = true
-        clothing.choosingPhoto = true
+    func resetDrawing(clothing: Clothing) -> Clothing {
+        currentLine = Line(points: [])
+        storedLine = currentLine
+        var defaultLine = Line()
+        defaultLine.points.append(CGPoint(x:0,y:0))
+        defaultLine.points.append(CGPoint(x:420,y:0))
+        defaultLine.points.append(CGPoint(x:420,y:560))
+        defaultLine.points.append(CGPoint(x:0,y:560))
+        let clothingNew = clothing.updateLine(line: defaultLine)
+        return clothingNew
     }
 }

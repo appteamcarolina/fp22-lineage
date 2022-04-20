@@ -34,7 +34,12 @@ class ClosetController: ObservableObject {
         saveCloset()
     }
     
-    func getClothing(index: Int, mult: Double) -> Clothing {
-        return Clothing(image: Closet[index].image, mult: mult, line: Closet[index].line, photoChosen: true)
+    func getClothing(index: Int) -> Clothing {
+        return Clothing(image: Closet[index].image, mult: Closet[index].mult, line: Closet[index].line, photoChosen: true, choosingPhoto: true)
+    }
+    
+    func addClothing(clothing: Clothing) {
+        Closet.append(clothing)
+        saveCloset()
     }
 }

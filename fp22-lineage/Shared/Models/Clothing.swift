@@ -9,34 +9,46 @@ import Foundation
 import SwiftUI
 
 struct Clothing: Codable {
-    @State var image: UIImage
-    @State var mult: Double
-    @State var line: Line
-    @State var photoChosen: Bool
-    @State var choosingPhoto: Bool
-    
+    var image: UIImage
+    var mult: Double
+    var line: Line
+    var type: String
+    var photoChosen: Bool
+    var choosingPhoto: Bool
     var border: Outline {
         get {
             return Outline(line: line, mult: mult)
         }
     }
+    var width: Double {
+        get {
+            return mult * 420
+        }
+    }
+    var height: Double {
+        get {
+            return mult * 560
+        }
+    }
     
-    init(image: UIImage, mult: Double, line: Line, photoChosen: Bool) {
+    init(image: UIImage = UIImage(), mult: Double, line: Line, type: String = "", photoChosen: Bool = false, choosingPhoto: Bool = false) {
         self.image = image
         self.mult = mult
         self.line = line
+        self.type = type
         self.photoChosen = photoChosen
-        self.choosingPhoto = false
+        self.choosingPhoto = choosingPhoto
     }
     
     private enum CodingKeys: String, CodingKey {
-        case image, mult, line, photoChosen, choosingPhoto
+        case image, mult, line, type, photoChosen, choosingPhoto
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         mult = try container.decode(Double.self, forKey: .mult)
         line = try container.decode(Line.self, forKey: .line)
+        type = try container.decode(String.self, forKey: .type)
         photoChosen = try container.decode(Bool.self, forKey: .photoChosen)
         choosingPhoto = false
         let imageData = try container.decode(Data.self, forKey: .image)
@@ -51,9 +63,30 @@ struct Clothing: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(mult, forKey: .mult)
         try container.encode(line, forKey: .line)
+        try container.encode(type, forKey: .type)
         try container.encode(photoChosen, forKey: .photoChosen)
         try container.encode(choosingPhoto, forKey: .choosingPhoto)
         let imageData = self.image.jpegData(compressionQuality: 0.1)
         try container.encode(imageData, forKey: .image)
+    }
+    
+    func updatePhoto() -> Clothing {
+        return Clothing(mult: mult, line: line, type: type, photoChosen: true, choosingPhoto: true)
+    }
+    
+    func updateLine(line: Line) -> Clothing {
+        return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
+    }
+    
+    func updateMult(mult: Double) -> Clothing {
+        return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
+    }
+    
+    func updateType(type: String) -> Clothing {
+        return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
+    }
+    
+    func copy() -> Clothing {
+        return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
     }
 }
