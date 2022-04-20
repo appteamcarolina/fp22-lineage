@@ -11,6 +11,11 @@ struct CarouselView: View {
     
     @ObservedObject var CC : ClosetController
     @StateObject var vm = CarouselViewModel()
+    @State private var newPic = false
+    
+    init(CC: ClosetController) {
+        self.CC = CC
+    }
 
     var body: some View {
         VStack {
@@ -50,15 +55,24 @@ struct CarouselView: View {
                 Text("Clear Closet")
             }
         }
-        .navigationBarItems(leading: Image(systemName: "house"), trailing: NavigationLink(destination: NewPictureView(CC:CC)) { Image(systemName: "plus") })
+        .background(
+            NavigationLink(destination: NewPictureView(CC:CC), isActive: $newPic) {
+                  EmptyView()
+                }
+            )
+        .toolbar {
+            ToolbarItem(placement: ToolbarItemPlacement.navigation) {
+                Image(systemName: "house")
+            }
+            ToolbarItem(placement: ToolbarItemPlacement.principal) {
+                Button {
+                    self.newPic = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+            }
+        }
         .navigationBarBackButtonHidden(true)
     }
 }
-
-/*
-struct CarouselView_Previews: PreviewProvider {
-    static var previews: some View {
-        CarouselView(Closet: )
-    }
-}
- */

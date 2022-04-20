@@ -46,9 +46,8 @@ struct PreviewView: View {
                     .font(.title3)
                 Spacer()
                     .frame(width: 20)
-                /*
                 NavigationLink(destination: CarouselView(CC: CC).onAppear {
-                    //CC.addClothing(clothing: newClothing)
+                    CC.addClothing(clothing: newClothing)
                 }) {
                     Image(systemName: "checkmark.circle")
                         .resizable()
@@ -59,11 +58,10 @@ struct PreviewView: View {
                         .clipShape(Circle())
                         .padding(2)
                 }
-                */
                 /*
                 NavigationLink(destination: CarouselView(CC: CC)) {
                     Button {
-                        //CC.addClothing(clothing: newClothing)
+                        CC.addClothing(clothing: newClothing)
                     } label: {
                         Image(systemName: "checkmark.circle")
                             .resizable()
@@ -75,7 +73,8 @@ struct PreviewView: View {
                             .padding(2)
                     }
                 }
-                */
+                 */
+                /*
                 Button {
                     CC.addClothing(clothing: newClothing)
                 } label: {
@@ -88,6 +87,7 @@ struct PreviewView: View {
                         .clipShape(Circle())
                         .padding(2)
                 }
+                */
             }
             Slider(value: $mult, in: 0.3...1.2)
                 .padding(5)

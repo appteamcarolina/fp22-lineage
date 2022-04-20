@@ -85,8 +85,4 @@ struct Clothing: Codable {
     func updateType(type: String) -> Clothing {
         return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
     }
-    
-    func copy() -> Clothing {
-        return Clothing(image: image, mult: mult, line: line, type: type, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
-    }
 }

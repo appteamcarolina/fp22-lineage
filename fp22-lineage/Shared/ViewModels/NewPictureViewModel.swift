@@ -9,13 +9,8 @@ import Foundation
 import SwiftUI
 
 class NewPictureViewModel: ObservableObject {
-    @ObservedObject var CC: ClosetController
     @Published var currentLine = Line()
     @Published var storedLine = Line()
-    
-    init(CC: ClosetController) {
-        self.CC = CC
-    }
     
     func changeDrawing(value: DragGesture.Value) {
         let newPoint = value.location
