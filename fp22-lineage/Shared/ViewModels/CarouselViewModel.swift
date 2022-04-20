@@ -8,18 +8,19 @@
 import Foundation
 
 class CarouselViewModel: ObservableObject {
-    @Published var shirtIndex: Int = 0
     
-    func changeShirtIndex(val: Int, len: Int) {
+    @Published var topIndex: Int = 0
+    
+    func changeTopIndex(val: Int, len: Int) {
         if len > 0 {
-            if shirtIndex + val < 0 {
-                shirtIndex = len-abs(val)
+            if topIndex + val < 0 {
+                topIndex = len-abs(val)
             } else {
-                shirtIndex = (shirtIndex + val)%len
+                topIndex = (topIndex + val)%len
             }
         }
     }
-    func resetShirtIndex() {
-        shirtIndex = 0
+    func resetTopIndex() {
+        topIndex = 0
     }
 }

@@ -11,9 +11,26 @@ struct ContentView: View {
     
     @StateObject var CC = ClosetController()
     
+    @State private var selectedTab = 1
+    
     var body: some View {
-        NavigationView {
-            NewPictureView(CC:CC)
+        
+        TabView(selection: $selectedTab) {
+            CarouselView(CC:CC, selectedTab: $selectedTab)
+                .tabItem {
+                    Text("Carousel")
+                }
+                .tag(1)
+            NewPictureView(CC:CC, selectedTab: $selectedTab)
+                .tabItem {
+                    Text("New Picture")
+                }
+                .tag(2)
+            ClosetView(CC:CC, selectedTab: $selectedTab)
+                .tabItem {
+                    Text("Closet")
+                }
+                .tag(3)
         }
     }
 }

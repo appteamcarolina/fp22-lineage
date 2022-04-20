@@ -10,5 +10,5 @@ import SwiftUI
 
 struct Line: Codable {
     var points = [CGPoint]()
-    var lineWidth: Double = 3.0
+    var lineWidth: Double = 4.0
 }

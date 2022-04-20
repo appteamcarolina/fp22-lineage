@@ -37,6 +37,8 @@
 		707DA71E27FCF65A00E35A83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DA6F427FCF65900E35A83 /* ContentView.swift */; };
 		707DA71F27FCF65A00E35A83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707DA6F527FCF65900E35A83 /* Assets.xcassets */; };
 		707DA72027FCF65A00E35A83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707DA6F527FCF65900E35A83 /* Assets.xcassets */; };
+		70AC3FE42810AC8300BE475D /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FE32810AC8300BE475D /* ClosetView.swift */; };
+		70AC3FE52810AC8300BE475D /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FE32810AC8300BE475D /* ClosetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		707DA71327FCF65A00E35A83 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		707DA71727FCF65A00E35A83 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		707DA71927FCF65A00E35A83 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		70AC3FE32810AC8300BE475D /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,7 @@
 				707B8FF1280528E700AFA03B /* NewPictureView.swift */,
 				707B8FFA28052C6900AFA03B /* CarouselView.swift */,
 				70179039280F64E000ECADDB /* PreviewView.swift */,
+				70AC3FE32810AC8300BE475D /* ClosetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -371,6 +375,7 @@
 				707DA71B27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
 				707B900D2805FC9D00AFA03B /* CarouselViewModel.swift in Sources */,
 				7017903A280F64E000ECADDB /* PreviewView.swift in Sources */,
+				70AC3FE42810AC8300BE475D /* ClosetView.swift in Sources */,
 				707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */,
 				707B8FFB28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70179036280CB43D00ECADDB /* ImagePicker.swift in Sources */,
@@ -390,6 +395,7 @@
 				707DA71C27FCF65A00E35A83 /* fp22_lineageApp.swift in Sources */,
 				707B900E2805FC9D00AFA03B /* CarouselViewModel.swift in Sources */,
 				7017903B280F64E000ECADDB /* PreviewView.swift in Sources */,
+				70AC3FE52810AC8300BE475D /* ClosetView.swift in Sources */,
 				707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */,
 				707B8FFC28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70179037280CB43D00ECADDB /* ImagePicker.swift in Sources */,

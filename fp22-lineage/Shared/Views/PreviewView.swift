@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PreviewView: View {
+    
+    @Binding var selectedTab: Int
+    @Binding var showPreview: Bool
+    
     @ObservedObject var CC: ClosetController
     @State var clothing: Clothing
     @State var mult: Double = 0.5
@@ -27,9 +31,11 @@ struct PreviewView: View {
         }
     }
     
-    init(CC: ClosetController, clothing: Clothing) {
+    init(CC: ClosetController, clothing: Clothing, selectedTab: Binding<Int>, showPreview: Binding<Bool>) {
         self.CC = CC
         self.clothing = clothing
+        self._selectedTab = selectedTab
+        self._showPreview = showPreview
     }
     
     var body: some View {
@@ -46,37 +52,10 @@ struct PreviewView: View {
                     .font(.title3)
                 Spacer()
                     .frame(width: 20)
-                NavigationLink(destination: CarouselView(CC: CC).onAppear {
-                    CC.addClothing(clothing: newClothing)
-                }) {
-                    Image(systemName: "checkmark.circle")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .scaledToFit()
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .clipShape(Circle())
-                        .padding(2)
-                }
-                /*
-                NavigationLink(destination: CarouselView(CC: CC)) {
-                    Button {
-                        CC.addClothing(clothing: newClothing)
-                    } label: {
-                        Image(systemName: "checkmark.circle")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .scaledToFit()
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .clipShape(Circle())
-                            .padding(2)
-                    }
-                }
-                 */
-                /*
                 Button {
                     CC.addClothing(clothing: newClothing)
+                    self.showPreview = false
+                    self.selectedTab = 1
                 } label: {
                     Image(systemName: "checkmark.circle")
                         .resizable()
@@ -87,18 +66,9 @@ struct PreviewView: View {
                         .clipShape(Circle())
                         .padding(2)
                 }
-                */
             }
             Slider(value: $mult, in: 0.3...1.2)
                 .padding(5)
         }
     }
 }
-
-/*
-struct PreviewView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewView()
-    }
-}
- */
