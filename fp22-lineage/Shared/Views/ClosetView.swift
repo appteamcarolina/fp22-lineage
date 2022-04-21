@@ -17,19 +17,25 @@ struct ClosetView: View {
         self._selectedTab = selectedTab
     }
     
-    var items: [GridItem] {
-        Array(repeating: .init(.adaptive(minimum: 120)), count: 3)
-        
-    }
-    
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: items) {
-                ForEach(CC.Hats[1...], id: \.self) { hat in
-                    ClosetClothingView(CC: CC, clothing: hat)
+        NavigationView {
+            VStack(spacing: 20) {
+                NavigationLink(destination: TypeView(CC:CC, type: "Hats")) {
+                    Text("Hats")
+                }
+                NavigationLink(destination: TypeView(CC:CC, type: "Jackets")) {
+                    Text("Jackets")
+                }
+                NavigationLink(destination: TypeView(CC:CC, type: "Tops")) {
+                    Text("Tops")
+                }
+                NavigationLink(destination: TypeView(CC:CC, type: "Bottoms")) {
+                    Text("Bottoms")
+                }
+                NavigationLink(destination: TypeView(CC:CC, type: "Shoes")) {
+                    Text("Shoes")
                 }
             }
-            .padding(.horizontal)
         }
     }
 }
