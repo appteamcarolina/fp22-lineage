@@ -17,19 +17,19 @@ struct ClosetView: View {
         self._selectedTab = selectedTab
     }
     
+    var items: [GridItem] {
+        Array(repeating: .init(.adaptive(minimum: 120)), count: 3)
+        
+    }
+    
     var body: some View {
-        VStack {
-            HStack {
-                Text("Hats")
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVGrid(columns: items) {
                 ForEach(CC.Hats[1...], id: \.self) { hat in
-                    Image(uiImage: hat.image)
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(hat.border)
-                        .frame(width: hat.width, height: hat.height)
-                        .position(hat.location)
+                    ClosetClothingView(CC: CC, clothing: hat)
                 }
             }
+            .padding(.horizontal)
         }
     }
 }

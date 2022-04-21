@@ -80,7 +80,7 @@ struct NewPictureView: View {
                             Text("")
                         }
                     }
-                    Text("When taking an image of clothing, make sure that it is centered and you are in a well lit area")
+                    Text("When taking an image of clothing we recommend filling as much of the frame as possible.")
                         .padding()
                     Button {
                         if clothing.type != "" {
