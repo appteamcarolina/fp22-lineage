@@ -18,6 +18,16 @@ struct ClosetView: View {
     }
     
     var body: some View {
+        /*
+        VStack {
+            HStack {
+                Text("Hats")
+                ForEach(CC.Closet["Hats"]!, id:\.self) { clothing in
+                    Image(uiImage: clothing.image)
+                }
+            }
+        }
+        */
         Text("Closet")
     }
 }

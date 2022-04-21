@@ -9,37 +9,103 @@ import Foundation
 
 class ClosetController: ObservableObject {
      
-    @Published var Closet = ["Hat":[Clothing](), "Jacket":[Clothing](), "Top":[Clothing](), "Bottoms":[Clothing](), "Shoes":[Clothing]()]
+    @Published var Hats = [Clothing(type: "Hats")]
+    @Published var Jackets = [Clothing(type: "Jackets")]
+    @Published var Tops = [Clothing(type: "Tops")]
+    @Published var Bottoms = [Clothing(type: "Bottoms")]
+    @Published var Shoes = [Clothing(type: "Shoes")]
     
     init() {
         getCloset()
     }
     
     func getCloset() {
-        guard
-            let data = UserDefaults.standard.data(forKey: "Closet"),
-            let savedCloset = try? JSONDecoder().decode([String: [Clothing]].self, from: data)
-        else { return }
-        self.Closet = savedCloset
+        do {
+            if let decodedHats = UserDefaults.standard.data(forKey: "Hats") {
+                let decodedHats = try JSONDecoder().decode([Clothing].self, from: decodedHats)
+                self.Hats = decodedHats
+            }
+            if let decodedJackets = UserDefaults.standard.data(forKey: "Jackets") {
+                let decodedJackets = try JSONDecoder().decode([Clothing].self, from: decodedJackets)
+                self.Jackets = decodedJackets
+            }
+            if let decodedTops = UserDefaults.standard.data(forKey: "Tops") {
+                let decodedTops = try JSONDecoder().decode([Clothing].self, from: decodedTops)
+                self.Tops = decodedTops
+            }
+            if let decodedBottoms = UserDefaults.standard.data(forKey: "Bottoms") {
+                let decodedBottoms = try JSONDecoder().decode([Clothing].self, from: decodedBottoms)
+                self.Bottoms = decodedBottoms
+            }
+            if let decodedShoes = UserDefaults.standard.data(forKey: "Shoes") {
+                let decodedShoes = try JSONDecoder().decode([Clothing].self, from: decodedShoes)
+                self.Shoes = decodedShoes
+            }
+
+        } catch {
+            print(error)
+        }
     }
     
     func saveCloset() {
-        if let encodedCloset = try? JSONEncoder().encode(Closet) {
-            UserDefaults.standard.set(encodedCloset, forKey: "Closet")
+        do {
+            let encodedHats = try JSONEncoder().encode(Hats)
+            UserDefaults.standard.set(encodedHats, forKey: "Hats")
+            let encodedJackets = try JSONEncoder().encode(Jackets)
+            UserDefaults.standard.set(encodedJackets, forKey: "Jackets")
+            let encodedTops = try JSONEncoder().encode(Tops)
+            UserDefaults.standard.set(encodedTops, forKey: "Tops")
+            let encodedBottoms = try JSONEncoder().encode(Bottoms)
+            UserDefaults.standard.set(encodedBottoms, forKey: "Bottoms")
+            let encodedShoes = try JSONEncoder().encode(Shoes)
+            UserDefaults.standard.set(encodedShoes, forKey: "Shoes")
+        } catch {
+            print(error)
         }
     }
     
     func clearCloset() {
-        Closet = ["Hat":[Clothing](), "Jacket":[Clothing](), "Top":[Clothing](), "Bottoms":[Clothing](), "Shoes":[Clothing]()]
+        self.Hats = [Clothing(type: "Hats")]
+        self.Jackets = [Clothing(type: "Jackets")]
+        self.Tops = [Clothing(type: "Tops")]
+        self.Bottoms = [Clothing(type: "Bottoms")]
+        self.Shoes = [Clothing(type: "Shoes")]
         saveCloset()
     }
     
     func getClothing(type: String, index: Int) -> Clothing {
-        return Clothing(image: (Closet[type]?[index].image)!, mult: (Closet[type]?[index].mult)!, line: (Closet[type]?[index].line)!, type: (Closet[type]?[index].type)!, location: (Closet[type]?[index].location)!, photoChosen: true, choosingPhoto: true)
+        switch type {
+        case "Hats":
+            return Hats[index]
+        case "Jackets":
+            return Jackets[index]
+        case "Tops":
+            return Tops[index]
+        case "Bottoms":
+            return Bottoms[index]
+        case "Shoes":
+            return Shoes[index]
+        default:
+            return Clothing()
+        }
     }
     
     func addClothing(clothing: Clothing) {
-        Closet[clothing.type]?.append(clothing)
+        let type = clothing.type
+        switch type {
+        case "Hats":
+            Hats.append(clothing)
+        case "Jackets":
+            Jackets.append(clothing)
+        case "Tops":
+            Tops.append(clothing)
+        case "Bottoms":
+            Bottoms.append(clothing)
+        case "Shoes":
+            Shoes.append(clothing)
+        default:
+            return
+        }
         saveCloset()
     }
 }

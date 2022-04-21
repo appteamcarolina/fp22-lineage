@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 
 struct Line: Codable {
-    var points = [CGPoint]()
+    var points: [CGPoint]
     var lineWidth: Double = 4.0
+    
+    init(points: [CGPoint] = [CGPoint]()) {
+        self.points = points
+    }
 }

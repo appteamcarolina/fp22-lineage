@@ -28,120 +28,122 @@ struct CarouselView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 420, height: 560)
-                if (CC.Closet["Bottoms"]?.count != 0) {
-                    let clothing = CC.getClothing(type: "Bottoms", index: vm.bottomsIndex)
-                    Image(uiImage: clothing.image)
+                if (vm.bottomsIndex != 0) {
+                    let bottoms = CC.getClothing(type: "Bottoms", index: vm.bottomsIndex)
+                    Image(uiImage: bottoms.image)
                         .resizable()
                         .scaledToFit()
-                        .clipShape(clothing.border)
-                        .frame(width: clothing.width, height: clothing.height)
-                        .position(clothing.location)
+                        .clipShape(bottoms.border)
+                        .frame(width: bottoms.width, height: bottoms.height)
+                        .position(bottoms.location)
                 }
-                if (CC.Closet["Shoes"]?.count != 0) {
-                    let clothing = CC.getClothing(type: "Shoes", index: vm.shoesIndex)
-                    Image(uiImage: clothing.image)
+                if (vm.shoesIndex != 0) {
+                    let shoes = CC.getClothing(type: "Shoes", index: vm.shoesIndex)
+                    Image(uiImage: shoes.image)
                         .resizable()
                         .scaledToFit()
-                        .clipShape(clothing.border)
-                        .frame(width: clothing.width, height: clothing.height)
-                        .position(clothing.location)
+                        .clipShape(shoes.border)
+                        .frame(width: shoes.width, height: shoes.height)
+                        .position(shoes.location)
                 }
-                if (CC.Closet["Top"]?.count != 0) {
-                    let clothing = CC.getClothing(type: "Top", index: vm.topIndex)
-                    Image(uiImage: clothing.image)
+                if (vm.topIndex != 0) {
+                    let top = CC.getClothing(type: "Tops", index: vm.topIndex)
+                    Image(uiImage: top.image)
                         .resizable()
                         .scaledToFit()
-                        .clipShape(clothing.border)
-                        .frame(width: clothing.width, height: clothing.height)
-                        .position(clothing.location)
+                        .clipShape(top.border)
+                        .frame(width: top.width, height: top.height)
+                        .position(top.location)
                 }
-                if (CC.Closet["Jacket"]?.count != 0) {
-                    let clothing = CC.getClothing(type: "Jacket", index: vm.jacketIndex)
-                    Image(uiImage: clothing.image)
+                if (vm.jacketIndex != 0) {
+                    let jacket = CC.getClothing(type: "Jackets", index: vm.jacketIndex)
+                    Image(uiImage: jacket.image)
                         .resizable()
                         .scaledToFit()
-                        .clipShape(clothing.border)
-                        .frame(width: clothing.width, height: clothing.height)
-                        .position(clothing.location)
+                        .clipShape(jacket.border)
+                        .frame(width: jacket.width, height: jacket.height)
+                        .position(jacket.location)
                 }
-                if (CC.Closet["Hat"]?.count != 0) {
-                    let clothing = CC.getClothing(type: "Hat", index: vm.hatIndex)
-                    Image(uiImage: clothing.image)
+                if (vm.hatIndex != 0) {
+                    let hat = CC.getClothing(type: "Hats", index: vm.hatIndex)
+                    Image(uiImage: hat.image)
                         .resizable()
                         .scaledToFit()
-                        .clipShape(clothing.border)
-                        .frame(width: clothing.width, height: clothing.height)
-                        .position(clothing.location)
+                        .clipShape(hat.border)
+                        .frame(width: hat.width, height: hat.height)
+                        .position(hat.location)
                 }
                 VStack(spacing: 50) {
                     HStack {
                         Button {
-                            vm.changeHatIndex(val: -1, len: CC.Closet["Hat"]!.count)
+                            vm.changeHatIndex(val: -1, len: CC.Hats.count)
+                        } label: {
+                            Image(systemName: "arrow.left.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        Spacer()
+                            .frame(width:300)
+                        Button {
+                            vm.changeHatIndex(val: 1, len: CC.Hats.count)
+                        } label: {
+                            Image(systemName: "arrow.right.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                    }
+                    HStack {
+                        Button {
+                            vm.changeJacketIndex(val: -1, len: CC.Jackets.count)
                         } label: {
                             Image(systemName: "arrow.left")
                         }
                         Spacer()
                             .frame(width:300)
                         Button {
-                            vm.changeHatIndex(val: 1, len: CC.Closet["Hat"]!.count)
+                            vm.changeJacketIndex(val: 1, len: CC.Jackets.count)
                         } label: {
                             Image(systemName: "arrow.right")
                         }
                     }
                     HStack {
                         Button {
-                            vm.changeJacketIndex(val: -1, len: CC.Closet["Jacket"]!.count)
+                            vm.changeTopIndex(val: -1, len: CC.Tops.count)
                         } label: {
                             Image(systemName: "arrow.left")
                         }
                         Spacer()
                             .frame(width:300)
                         Button {
-                            vm.changeJacketIndex(val: 1, len: CC.Closet["Jacket"]!.count)
+                            vm.changeTopIndex(val: 1, len: CC.Tops.count)
                         } label: {
                             Image(systemName: "arrow.right")
                         }
                     }
                     HStack {
                         Button {
-                            vm.changeTopIndex(val: -1, len: CC.Closet["Top"]!.count)
+                            vm.changeBottomsIndex(val: -1, len: CC.Bottoms.count)
                         } label: {
                             Image(systemName: "arrow.left")
                         }
                         Spacer()
                             .frame(width:300)
                         Button {
-                            vm.changeTopIndex(val: 1, len: CC.Closet["Top"]!.count)
+                            vm.changeBottomsIndex(val: 1, len: CC.Bottoms.count)
                         } label: {
                             Image(systemName: "arrow.right")
                         }
                     }
                     HStack {
                         Button {
-                            vm.changeBottomsIndex(val: -1, len: CC.Closet["Bottoms"]!.count)
-                        } label: {
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(Color.red)
-                        }
-                        Spacer()
-                            .frame(width:300)
-                        Button {
-                            vm.changeBottomsIndex(val: 1, len: CC.Closet["Bottoms"]!.count)
-                        } label: {
-                            Image(systemName: "arrow.right")
-                                .foregroundColor(Color.red)
-                        }
-                    }
-                    HStack {
-                        Button {
-                            vm.changeShoesIndex(val: -1, len: CC.Closet["Shoes"]!.count)
+                            vm.changeShoesIndex(val: -1, len: CC.Shoes.count)
                         } label: {
                             Image(systemName: "arrow.left")
                         }
                         Spacer()
                             .frame(width:300)
                         Button {
-                            vm.changeShoesIndex(val: 1, len: CC.Closet["Shoes"]!.count)
+                            vm.changeShoesIndex(val: 1, len: CC.Shoes.count)
                         } label: {
                             Image(systemName: "arrow.right")
                         }
@@ -153,6 +155,13 @@ struct CarouselView: View {
                 vm.reset()
             } label: {
                 Text("Clear Closet")
+                    .padding()
+            }
+            Button {
+                CC.getCloset()
+            } label: {
+                Text("Get Closet")
+                    .padding()
             }
         }
     }

@@ -25,7 +25,7 @@ struct NewPictureView: View {
         defaultLine.points.append(CGPoint(x:0,y:560))
         self.CC = CC
         self._selectedTab = selectedTab
-        self.clothing = Clothing(mult: 1, line: defaultLine)
+        self.clothing = Clothing()
     }
      
     var body: some View {
@@ -38,17 +38,17 @@ struct NewPictureView: View {
                     HStack {
                         Menu {
                             Button {
-                                clothing = clothing.updateType(type: "Hat")
+                                clothing = clothing.updateType(type: "Hats")
                             } label: {
                                 Text("Hat")
                             }
                             Button {
-                                clothing = clothing.updateType(type: "Jacket")
+                                clothing = clothing.updateType(type: "Jackets")
                             } label: {
                                 Text("Jacket")
                             }
                             Button {
-                                clothing = clothing.updateType(type: "Top")
+                                clothing = clothing.updateType(type: "Tops")
                             } label: {
                                 Text("Top")
                             }
@@ -157,7 +157,7 @@ struct NewPictureView: View {
                     ImagePicker(image: $clothing.image, sourceType: .camera)
                 }
                 .sheet(isPresented: $showPreview, onDismiss: {
-                    clothing = Clothing(mult: 1, line: defaultLine)
+                    clothing = Clothing()
                     clothing = vm.resetDrawing(clothing: clothing)
                     selected = false
                     CC.saveCloset()
