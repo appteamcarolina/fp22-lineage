@@ -65,7 +65,20 @@ struct NewPictureView: View {
                         } label: {
                             Label("What type of clothing?", systemImage: "tshirt")
                         }
-                        Text("\(clothing.type)")
+                        switch clothing.type {
+                        case "Hats":
+                            Text("Hat")
+                        case "Jackets":
+                            Text("Jacket")
+                        case "Tops":
+                            Text("Top")
+                        case "Bottoms":
+                            Text("Bottoms")
+                        case "Shoes":
+                            Text("Shoes")
+                        default:
+                            Text("")
+                        }
                     }
                     Text("When taking an image of clothing, make sure that it is centered and you are in a well lit area")
                         .padding()

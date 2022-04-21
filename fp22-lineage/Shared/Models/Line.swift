@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Line: Codable {
+struct Line: Equatable, Hashable, Codable {
     var points: [CGPoint]
     var lineWidth: Double = 4.0
     

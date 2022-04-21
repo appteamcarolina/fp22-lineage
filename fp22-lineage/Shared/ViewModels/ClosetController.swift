@@ -9,7 +9,7 @@ import Foundation
 
 class ClosetController: ObservableObject {
      
-    @Published var Hats = [Clothing(type: "Hats")]
+    @Published var Hats = [Clothing(mult: 0, type: "Hats")]
     @Published var Jackets = [Clothing(type: "Jackets")]
     @Published var Tops = [Clothing(type: "Tops")]
     @Published var Bottoms = [Clothing(type: "Bottoms")]

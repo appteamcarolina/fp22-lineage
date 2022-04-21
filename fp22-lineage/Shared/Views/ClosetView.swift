@@ -18,16 +18,18 @@ struct ClosetView: View {
     }
     
     var body: some View {
-        /*
         VStack {
             HStack {
                 Text("Hats")
-                ForEach(CC.Closet["Hats"]!, id:\.self) { clothing in
-                    Image(uiImage: clothing.image)
+                ForEach(CC.Hats[1...], id: \.self) { hat in
+                    Image(uiImage: hat.image)
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(hat.border)
+                        .frame(width: hat.width, height: hat.height)
+                        .position(hat.location)
                 }
             }
         }
-        */
-        Text("Closet")
     }
 }

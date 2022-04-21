@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Clothing: Identifiable, Codable {
+struct Clothing: Identifiable, Equatable, Hashable, Codable {
     let id: String
     var image: UIImage
     var mult: Double
@@ -99,14 +99,25 @@ struct Clothing: Identifiable, Codable {
         return Clothing(id: id, image: image, mult: mult, line: line, type: type, location: location, photoChosen: photoChosen, choosingPhoto: choosingPhoto)
     }
     
-    /*
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(mult)
+        hasher.combine(line)
+        hasher.combine(type)
+        hasher.combine(location)
+        hasher.combine(image)
+        hasher.combine(photoChosen)
+        hasher.combine(choosingPhoto)
     }
-    */
-    /*
+    
     static func == (lhs: Clothing, rhs: Clothing) -> Bool {
-        return lhs.id == rhs.id && lhs.mult == rhs.mult && lhs.line == rhs.line && lhs.location == rhs.location && lhs.image == rhs.image
+        return lhs.id == rhs.id && lhs.mult == rhs.mult && lhs.line == rhs.line && lhs.type == rhs.type && lhs.location == rhs.location && lhs.image == rhs.image && lhs.photoChosen == rhs.photoChosen && lhs.choosingPhoto == rhs.choosingPhoto
     }
-    */
+}
+
+extension CGPoint : Hashable {
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(x)
+    hasher.combine(y)
+  }
 }
