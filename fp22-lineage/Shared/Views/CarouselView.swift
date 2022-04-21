@@ -157,12 +157,6 @@ struct CarouselView: View {
                 Text("Clear Closet")
                     .padding()
             }
-            Button {
-                CC.getCloset()
-            } label: {
-                Text("Get Closet")
-                    .padding()
-            }
         }
     }
 }
