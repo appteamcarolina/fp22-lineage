@@ -10,6 +10,7 @@ import SwiftUI
 struct CarouselView: View {
     
     @State private var newPic = false
+    @State var dummy: Dummy
     
     @ObservedObject var CC: ClosetController
     @Binding var selectedTab: Int
@@ -17,16 +18,17 @@ struct CarouselView: View {
     init(CC: ClosetController, selectedTab: Binding<Int>) {
         self.CC = CC
         self._selectedTab = selectedTab
+        self.dummy = CC.dummy
     }
     
     var body: some View {
 
         VStack {
             ZStack {
-                Image("dummy")
+                Image(uiImage: dummy.image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 420, height: 560)
+                    .frame(width: 378, height: 504)
                 if (CC.bottomsIndex != 0) {
                     let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
                     Image(uiImage: bottoms.image)
@@ -72,37 +74,53 @@ struct CarouselView: View {
                         .frame(width: hat.width, height: hat.height)
                         .position(hat.location)
                 }
-                VStack(spacing: 50) {
+                HStack {
+                    Rectangle()
+                        .fill(Color(UIColor.systemBackground))
+                        .frame(width:60, height:504)
+                    Spacer()
+                    Rectangle()
+                        .fill(Color(UIColor.systemBackground))
+                        .frame(width:60, height:504)
+                }
+                VStack {
+                    Spacer()
                     HStack {
                         Button {
                             CC.changeHatIndex(val: -1, len: CC.Hats.count)
                         } label: {
-                            Image(systemName: "arrow.left.circle")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                            HStack {
+                                Image(systemName: "chevron.left")
+                                Text("Hat")
+                            }
                         }
                         Spacer()
-                            .frame(width:300)
                         Button {
                             CC.changeHatIndex(val: 1, len: CC.Hats.count)
                         } label: {
-                            Image(systemName: "arrow.right.circle")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                            HStack {
+                                Text("Hat")
+                                Image(systemName: "chevron.right")
+                            }
                         }
                     }
                     HStack {
                         Button {
                             CC.changeJacketIndex(val: -1, len: CC.Jackets.count)
                         } label: {
-                            Image(systemName: "arrow.left")
+                            HStack {
+                                Image(systemName: "chevron.left")
+                                Text("Jacket")
+                            }
                         }
                         Spacer()
-                            .frame(width:300)
                         Button {
                             CC.changeJacketIndex(val: 1, len: CC.Jackets.count)
                         } label: {
-                            Image(systemName: "arrow.right")
+                            HStack {
+                                Text("Jacket")
+                                Image(systemName: "chevron.right")
+                            }
                         }
                     }
                     HStack {
@@ -148,13 +166,39 @@ struct CarouselView: View {
                         }
                     }
                 }
-            }.frame(width: 420, height: 560)
+                if !dummy.photoChosen {
+                    Button {
+                        dummy = dummy.updatePhoto()
+                    } label: {
+                        VStack {
+                            Image(systemName: "camera.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width:30, height:30)
+                            Text("Take picture for Avatar")
+                        }
+                        .padding()
+                    }
+                }
+            }.frame(width: 378, height: 504)
+            /*
             Button {
                 CC.clearCloset()
             } label: {
                 Text("Clear Closet")
                     .padding()
             }
+            Button {
+                CC.resetDummy()
+                dummy = Dummy()
+            } label: {
+                Text("Reset Dummy")
+            }
+             */
+        }.sheet(isPresented: $dummy.choosingPhoto, onDismiss: {
+            CC.setDummy(dummy: dummy)
+        }) {
+            ImagePicker(image: $dummy.image, sourceType: .camera)
         }
     }
 }

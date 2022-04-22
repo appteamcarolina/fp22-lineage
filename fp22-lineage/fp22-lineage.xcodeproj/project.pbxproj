@@ -41,6 +41,8 @@
 		70AC3FEB2811F1DD00BE475D /* ClosetClothingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FE92811F1DD00BE475D /* ClosetClothingView.swift */; };
 		70AC3FED28120D5900BE475D /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEC28120D5900BE475D /* TypeView.swift */; };
 		70AC3FEE28120D5900BE475D /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEC28120D5900BE475D /* TypeView.swift */; };
+		70AC3FF02812321D00BE475D /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEF2812321D00BE475D /* Dummy.swift */; };
+		70AC3FF12812321D00BE475D /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEF2812321D00BE475D /* Dummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,7 @@
 		70AC3FE32810AC8300BE475D /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		70AC3FE92811F1DD00BE475D /* ClosetClothingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetClothingView.swift; sourceTree = "<group>"; };
 		70AC3FEC28120D5900BE475D /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
+		70AC3FEF2812321D00BE475D /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 				707B90002805E82E00AFA03B /* Clothing.swift */,
 				707B8FF42805299400AFA03B /* Outline.swift */,
 				707B8FF7280529C200AFA03B /* Line.swift */,
+				70AC3FEF2812321D00BE475D /* Dummy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,6 +384,7 @@
 				7017903A280F64E000ECADDB /* PreviewView.swift in Sources */,
 				70AC3FE42810AC8300BE475D /* ClosetView.swift in Sources */,
 				707B8FF2280528E700AFA03B /* NewPictureView.swift in Sources */,
+				70AC3FF02812321D00BE475D /* Dummy.swift in Sources */,
 				707B8FFB28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70AC3FED28120D5900BE475D /* TypeView.swift in Sources */,
 				70179036280CB43D00ECADDB /* ImagePicker.swift in Sources */,
@@ -401,6 +406,7 @@
 				7017903B280F64E000ECADDB /* PreviewView.swift in Sources */,
 				70AC3FE52810AC8300BE475D /* ClosetView.swift in Sources */,
 				707B8FF3280528E700AFA03B /* NewPictureView.swift in Sources */,
+				70AC3FF12812321D00BE475D /* Dummy.swift in Sources */,
 				707B8FFC28052C6900AFA03B /* CarouselView.swift in Sources */,
 				70AC3FEE28120D5900BE475D /* TypeView.swift in Sources */,
 				70179037280CB43D00ECADDB /* ImagePicker.swift in Sources */,

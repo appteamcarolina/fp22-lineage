@@ -18,25 +18,28 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             CarouselView(CC:CC, selectedTab: $selectedTab)
                 .tabItem {
-                    Text("Carousel")
+                    VStack {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
                 }
                 .tag(1)
             NewPictureView(CC:CC, selectedTab: $selectedTab)
                 .tabItem {
-                    Text("New Picture")
+                    VStack {
+                        Image(systemName: "camera.fill")
+                        Text("Add Clothing")
+                    }
                 }
                 .tag(2)
             ClosetView(CC:CC, selectedTab: $selectedTab)
                 .tabItem {
-                    Text("Closet")
+                    VStack {
+                        Image(systemName: "tshirt")
+                        Text("Closet")
+                    }
                 }
                 .tag(3)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

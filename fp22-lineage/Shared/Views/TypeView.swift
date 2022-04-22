@@ -18,7 +18,7 @@ struct TypeView: View {
     }
     
     var items: [GridItem] {
-        Array(repeating: .init(.adaptive(minimum: 120)), count: 3)
+        Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
     }
     
     var body: some View {

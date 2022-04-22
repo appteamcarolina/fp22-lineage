@@ -14,7 +14,7 @@ struct ClosetClothingView: View {
     
     init(CC: ClosetController, clothing: Clothing) {
         self.CC = CC
-        self.clothing = clothing.updateMult(mult: 0.3)
+        self.clothing = clothing.updateMult(mult: 0.5)
     }
     
     var body: some View {

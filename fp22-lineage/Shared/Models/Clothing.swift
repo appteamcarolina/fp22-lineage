@@ -25,16 +25,16 @@ struct Clothing: Identifiable, Equatable, Hashable, Codable {
     }
     var width: Double {
         get {
-            return mult * 420
+            return mult * 378
         }
     }
     var height: Double {
         get {
-            return mult * 560
+            return mult * 504
         }
     }
     
-    init(id: String = UUID().uuidString, image: UIImage = UIImage(imageLiteralResourceName: "shirt"), mult: Double = 1, line: Line = Line(points: [CGPoint(x:0,y:0), CGPoint(x:420,y:0), CGPoint(x:420,y:560), CGPoint(x:0,y:560)]), type: String = "", location: CGPoint = CGPoint(x: 210, y: 280), photoChosen: Bool = false, choosingPhoto: Bool = false) {
+    init(id: String = UUID().uuidString, image: UIImage = UIImage(imageLiteralResourceName: "default"), mult: Double = 1, line: Line = Line(points: [CGPoint(x:0,y:0), CGPoint(x:420,y:0), CGPoint(x:420,y:560), CGPoint(x:0,y:560)]), type: String = "", location: CGPoint = CGPoint(x: 210, y: 280), photoChosen: Bool = false, choosingPhoto: Bool = false) {
         self.id = id
         self.image = image
         self.mult = mult
@@ -60,7 +60,7 @@ struct Clothing: Identifiable, Equatable, Hashable, Codable {
         choosingPhoto = false
         let imageData = try container.decode(Data.self, forKey: .image)
         guard let image = UIImage(data: imageData) else {
-            self.image = UIImage(imageLiteralResourceName: "shirt")
+            self.image = UIImage(imageLiteralResourceName: "default")
             return
         }
         self.image = image

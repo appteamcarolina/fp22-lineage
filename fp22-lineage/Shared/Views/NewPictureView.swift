@@ -80,7 +80,7 @@ struct NewPictureView: View {
                             Text("")
                         }
                     }
-                    Text("When taking an image of clothing we recommend filling as much of the frame as possible.")
+                    Text("When taking an image of an article of clothing we recommend wearing it and having it fill the frame as much as possible")
                         .padding()
                     Button {
                         if clothing.type != "" {
@@ -105,25 +105,50 @@ struct NewPictureView: View {
                         .resizable()
                         .scaledToFit()
                         .clipShape(clothing.border)
-                        .frame(width: 420, height: 560)
+                        .frame(width: 378, height: 504)
                     if clothing.photoChosen {
                         ZStack(alignment: .topTrailing) {
                             Canvas { context, size in
                                 var path = Path()
-                                path.addLines(vm.storedLine.points)
-                                context.stroke(path, with: .color(Color.white), lineWidth: vm.storedLine.lineWidth)
+                                path.addLines(vm.currentLine.points)
+                                context.stroke(path, with: .color(Color.white), lineWidth: vm.currentLine.lineWidth)
                             }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                             .onChanged({ value in
                                 vm.changeDrawing(value: value)
                                 })
                             .onEnded({ value in
-                                clothing = vm.endDrawing(clothing: clothing)
+                                vm.pauseDrawing()
                             })
                             )
-                            .frame(width: 420, height: 560)
+                            .frame(width: 378, height: 504)
                             
                             VStack {
                                 Button {
+                                    clothing = vm.endDrawing(clothing: clothing)
+                                } label: {
+                                    Image(systemName: "checkmark.circle")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .background(Color.purple)
+                                        .clipShape(Circle())
+                                        .padding(2)
+                                }
+                                Button {
+                                    vm.undo()
+                                } label: {
+                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .background(Color.orange)
+                                        .clipShape(Circle())
+                                        .padding(2)
+                                }
+                                Button {
+                                    clothing = vm.endDrawing(clothing: clothing)
                                     self.showPreview = true
                                 } label: {
                                     Image(systemName: "checkmark.circle")
@@ -135,7 +160,6 @@ struct NewPictureView: View {
                                         .clipShape(Circle())
                                         .padding(2)
                                 }
-
                                 Button {
                                     clothing = vm.resetDrawing(clothing: clothing)
                                 } label: {

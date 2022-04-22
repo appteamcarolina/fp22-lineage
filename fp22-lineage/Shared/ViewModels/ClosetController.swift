@@ -22,9 +22,12 @@ class ClosetController: ObservableObject {
     @Published var bottomsIndex: Int = 0
     @Published var shoesIndex: Int = 0
     
+    @Published var dummy: Dummy = Dummy()
+    
     init() {
         getCloset()
         getIndexes()
+        getDummy()
     }
     
     func getCloset() {
@@ -81,6 +84,17 @@ class ClosetController: ObservableObject {
         }
     }
     
+    func getDummy() {
+        do {
+            if let decodedDummy = UserDefaults.standard.data(forKey: "dummy") {
+                let decodedDummy = try JSONDecoder().decode(Dummy.self, from: decodedDummy)
+                self.dummy = decodedDummy
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
     func saveCloset() {
         do {
             let encodedHats = try JSONEncoder().encode(Hats)
@@ -115,6 +129,15 @@ class ClosetController: ObservableObject {
         }
     }
     
+    func saveDummy() {
+        do {
+            let encodedDummy = try JSONEncoder().encode(dummy)
+            UserDefaults.standard.set(encodedDummy, forKey: "dummy")
+        } catch {
+            print(error)
+        }
+    }
+    
     func clearCloset() {
         self.Hats = [Clothing(type: "Hats")]
         self.Jackets = [Clothing(type: "Jackets")]
@@ -127,6 +150,11 @@ class ClosetController: ObservableObject {
         reset(type: "Bottoms")
         reset(type: "Shoes")
         saveCloset()
+    }
+    
+    func resetDummy() {
+        self.dummy = Dummy()
+        saveDummy()
     }
     
     func getClothing(type: String, index: Int) -> Clothing {
@@ -151,18 +179,28 @@ class ClosetController: ObservableObject {
         switch type {
         case "Hats":
             Hats.append(clothing)
+            hatIndex = Hats.count-1
         case "Jackets":
             Jackets.append(clothing)
+            jacketIndex = Jackets.count-1
         case "Tops":
             Tops.append(clothing)
+            topIndex = Tops.count-1
         case "Bottoms":
             Bottoms.append(clothing)
+            bottomsIndex = Bottoms.count-1
         case "Shoes":
             Shoes.append(clothing)
+            shoesIndex = Shoes.count-1
         default:
             return
         }
         saveCloset()
+    }
+    
+    func setDummy(dummy: Dummy) {
+        self.dummy = dummy
+        saveDummy()
     }
     
     func deleteClothing(clothing: Clothing) {

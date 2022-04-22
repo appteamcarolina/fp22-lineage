@@ -26,12 +26,12 @@ struct PreviewView: View {
     @State var mult: Double = 0.5
     var width: Double {
         get {
-            mult * 420
+            mult * 378
         }
     }
     var height: Double {
         get {
-            mult * 560
+            mult * 504
         }
     }
     var newClothing: Clothing {
@@ -51,10 +51,10 @@ struct PreviewView: View {
     var body: some View {
         VStack {
             ZStack {
-                Image("dummy")
+                Image(uiImage: CC.dummy.image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 420, height: 560)
+                    .frame(width: 378, height: 504)
                 Image(uiImage: newClothing.image)
                     .resizable()
                     .scaledToFit()
@@ -62,7 +62,7 @@ struct PreviewView: View {
                     .frame(width: width, height: height)
                     .position(newClothing.location)
                     .gesture(simpleDrag)
-            }.frame(width: 420, height: 560)
+            }.frame(width: 378, height: 504)
             HStack {
                 Text("Adjust size with slider below!")
                     .font(.title3)
@@ -83,7 +83,7 @@ struct PreviewView: View {
                         .padding(2)
                 }
             }
-            Slider(value: $mult, in: 0.3...1.5)
+            Slider(value: $mult, in: 0.2...1.5)
         }
     }
 }
