@@ -35,6 +35,17 @@ struct ClosetView: View {
                 NavigationLink(destination: TypeView(CC:CC, type: "Shoes")) {
                     Text("Shoes")
                 }
+                Button {
+                    CC.clearCloset()
+                } label: {
+                    Text("Clear Closet")
+                        .padding()
+                }
+                Button {
+                    CC.resetDummy()
+                } label: {
+                    Text("Reset Dummy")
+                }
             }
         }
     }

@@ -83,7 +83,7 @@ struct NewPictureView: View {
                     Text("When taking an image of an article of clothing we recommend wearing it and having it fill the frame as much as possible")
                         .padding()
                     Button {
-                        if clothing.type != "" {
+                        if (clothing.type != "" && CC.dummy.photoChosen) {
                             selected = true
                             clothing = clothing.updatePhoto()
                         }

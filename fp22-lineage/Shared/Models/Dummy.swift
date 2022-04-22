@@ -13,7 +13,7 @@ struct Dummy: Codable {
     var photoChosen: Bool
     var choosingPhoto: Bool
     
-    init(image: UIImage = UIImage(imageLiteralResourceName: "dummy"), photoChosen: Bool = false, choosingPhoto: Bool = false) {
+    init(image: UIImage = UIImage(imageLiteralResourceName: "default"), photoChosen: Bool = false, choosingPhoto: Bool = false) {
         self.image = image
         self.photoChosen = photoChosen
         self.choosingPhoto = choosingPhoto
@@ -29,7 +29,7 @@ struct Dummy: Codable {
         choosingPhoto = false
         let imageData = try container.decode(Data.self, forKey: .image)
         guard let image = UIImage(data: imageData) else {
-            self.image = UIImage(imageLiteralResourceName: "dummy")
+            self.image = UIImage(imageLiteralResourceName: "default")
             return
         }
         self.image = image
