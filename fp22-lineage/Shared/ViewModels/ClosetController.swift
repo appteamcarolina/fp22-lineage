@@ -22,67 +22,9 @@ class ClosetController: ObservableObject {
     @Published var bottomsIndex: Int = 0
     @Published var shoesIndex: Int = 0
     
-    
-    func reset() {
-        hatIndex = 0
-        jacketIndex = 0
-        topIndex = 0
-        bottomsIndex = 0
-        shoesIndex = 0
-    }
-    
-    func changeHatIndex(val: Int, len: Int) {
-        if len > 0 {
-            if hatIndex + val < 0 {
-                hatIndex = len-abs(val)
-            } else {
-                hatIndex = (hatIndex + val)%len
-            }
-        }
-    }
-    
-    func changeJacketIndex(val: Int, len: Int) {
-        if len > 0 {
-            if jacketIndex + val < 0 {
-                jacketIndex = len-abs(val)
-            } else {
-                jacketIndex = (jacketIndex + val)%len
-            }
-        }
-    }
-    
-    func changeTopIndex(val: Int, len: Int) {
-        if len > 0 {
-            if topIndex + val < 0 {
-                topIndex = len-abs(val)
-            } else {
-                topIndex = (topIndex + val)%len
-            }
-        }
-    }
-    
-    func changeBottomsIndex(val: Int, len: Int) {
-        if len > 0 {
-            if bottomsIndex + val < 0 {
-                bottomsIndex = len-abs(val)
-            } else {
-                bottomsIndex = (bottomsIndex + val)%len
-            }
-        }
-    }
-    
-    func changeShoesIndex(val: Int, len: Int) {
-        if len > 0 {
-            if shoesIndex + val < 0 {
-                shoesIndex = len-abs(val)
-            } else {
-                shoesIndex = (shoesIndex + val)%len
-            }
-        }
-    }
-    
     init() {
         getCloset()
+        getIndexes()
     }
     
     func getCloset() {
@@ -107,7 +49,33 @@ class ClosetController: ObservableObject {
                 let decodedShoes = try JSONDecoder().decode([Clothing].self, from: decodedShoes)
                 self.Shoes = decodedShoes
             }
-
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getIndexes() {
+        do {
+            if let decodedHatIndex = UserDefaults.standard.data(forKey: "hatIndex") {
+                let decodedHatIndex = try JSONDecoder().decode(Int.self, from: decodedHatIndex)
+                self.hatIndex = decodedHatIndex
+            }
+            if let decodedJacketIndex = UserDefaults.standard.data(forKey: "jacketIndex") {
+                let decodedJacketIndex = try JSONDecoder().decode(Int.self, from: decodedJacketIndex)
+                self.jacketIndex = decodedJacketIndex
+            }
+            if let decodedTopIndex = UserDefaults.standard.data(forKey: "topIndex") {
+                let decodedTopIndex = try JSONDecoder().decode(Int.self, from: decodedTopIndex)
+                self.topIndex = decodedTopIndex
+            }
+            if let decodedBottomsIndex = UserDefaults.standard.data(forKey: "bottomsIndex") {
+                let decodedBottomsIndex = try JSONDecoder().decode(Int.self, from: decodedBottomsIndex)
+                self.bottomsIndex = decodedBottomsIndex
+            }
+            if let decodedShoesIndex = UserDefaults.standard.data(forKey: "shoesIndex") {
+                let decodedShoesIndex = try JSONDecoder().decode(Int.self, from: decodedShoesIndex)
+                self.shoesIndex = decodedShoesIndex
+            }
         } catch {
             print(error)
         }
@@ -128,7 +96,23 @@ class ClosetController: ObservableObject {
         } catch {
             print(error)
         }
-        getCloset()
+    }
+    
+    func saveIndexes() {
+        do {
+            let encodedHatIndex = try JSONEncoder().encode(hatIndex)
+            UserDefaults.standard.set(encodedHatIndex, forKey: "hatIndex")
+            let encodedJacketIndex = try JSONEncoder().encode(jacketIndex)
+            UserDefaults.standard.set(encodedJacketIndex, forKey: "jacketIndex")
+            let encodedBottomsIndex = try JSONEncoder().encode(bottomsIndex)
+            UserDefaults.standard.set(encodedBottomsIndex, forKey: "bottomsIndex")
+            let encodedTopIndex = try JSONEncoder().encode(topIndex)
+            UserDefaults.standard.set(encodedTopIndex, forKey: "topIndex")
+            let encodedShoesIndex = try JSONEncoder().encode(shoesIndex)
+            UserDefaults.standard.set(encodedShoesIndex, forKey: "shoesIndex")
+        } catch {
+            print(error)
+        }
     }
     
     func clearCloset() {
@@ -137,7 +121,11 @@ class ClosetController: ObservableObject {
         self.Tops = [Clothing(type: "Tops")]
         self.Bottoms = [Clothing(type: "Bottoms")]
         self.Shoes = [Clothing(type: "Shoes")]
-        reset()
+        reset(type: "Hats")
+        reset(type: "Jackets")
+        reset(type: "Tops")
+        reset(type: "Bottoms")
+        reset(type: "Shoes")
         saveCloset()
     }
     
@@ -203,7 +191,80 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        reset()
+        reset(type: type)
         saveCloset()
+    }
+    
+    func reset(type: String) {
+        switch type {
+        case "Hats":
+            hatIndex = 0
+        case "Jackets":
+            jacketIndex = 0
+        case "Tops":
+            topIndex = 0
+        case "Bottoms":
+            bottomsIndex = 0
+        case "Shoes":
+            shoesIndex = 0
+        default:
+            return
+        }
+        saveIndexes()
+    }
+    
+    func changeHatIndex(val: Int, len: Int) {
+        if len > 0 {
+            if hatIndex + val < 0 {
+                hatIndex = len-abs(val)
+            } else {
+                hatIndex = (hatIndex + val)%len
+            }
+        }
+        saveIndexes()
+    }
+    
+    func changeJacketIndex(val: Int, len: Int) {
+        if len > 0 {
+            if jacketIndex + val < 0 {
+                jacketIndex = len-abs(val)
+            } else {
+                jacketIndex = (jacketIndex + val)%len
+            }
+        }
+        saveIndexes()
+    }
+    
+    func changeTopIndex(val: Int, len: Int) {
+        if len > 0 {
+            if topIndex + val < 0 {
+                topIndex = len-abs(val)
+            } else {
+                topIndex = (topIndex + val)%len
+            }
+        }
+        saveIndexes()
+    }
+    
+    func changeBottomsIndex(val: Int, len: Int) {
+        if len > 0 {
+            if bottomsIndex + val < 0 {
+                bottomsIndex = len-abs(val)
+            } else {
+                bottomsIndex = (bottomsIndex + val)%len
+            }
+        }
+        saveIndexes()
+    }
+    
+    func changeShoesIndex(val: Int, len: Int) {
+        if len > 0 {
+            if shoesIndex + val < 0 {
+                shoesIndex = len-abs(val)
+            } else {
+                shoesIndex = (shoesIndex + val)%len
+            }
+        }
+        saveIndexes()
     }
 }
