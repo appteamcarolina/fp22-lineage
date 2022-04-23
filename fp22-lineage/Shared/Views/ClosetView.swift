@@ -11,6 +11,7 @@ struct ClosetView: View {
     
     @ObservedObject var CC: ClosetController
     @Binding var selectedTab: Int
+    @State var warning = false
     
     init(CC: ClosetController, selectedTab: Binding<Int>) {
         self.CC = CC
@@ -20,32 +21,74 @@ struct ClosetView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                NavigationLink(destination: TypeView(CC:CC, type: "Hats")) {
-                    Text("Hats")
+                Text("Closet")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text("Click one of the clothing types below to view your clothes")
+                    .frame(width:300)
+                    .padding()
+                    .multilineTextAlignment(.center)
+                HStack {
+                    NavigationLink(destination: TypeView(CC:CC, type: "Hats")) {
+                        Text("Hats")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 30))
+                            .padding(5)
+                    }
+                    Spacer()
+                        .frame(width: 30)
+                    NavigationLink(destination: TypeView(CC:CC, type: "Jackets")) {
+                        Text("Jackets")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 30))
+                            .padding(5)
+                    }
                 }
-                NavigationLink(destination: TypeView(CC:CC, type: "Jackets")) {
-                    Text("Jackets")
-                }
-                NavigationLink(destination: TypeView(CC:CC, type: "Tops")) {
-                    Text("Tops")
-                }
-                NavigationLink(destination: TypeView(CC:CC, type: "Bottoms")) {
-                    Text("Bottoms")
+                HStack {
+                    NavigationLink(destination: TypeView(CC:CC, type: "Tops")) {
+                        Text("Tops")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 30))
+                            .padding(5)
+                    }
+                    Spacer()
+                        .frame(width: 30)
+                    NavigationLink(destination: TypeView(CC:CC, type: "Bottoms")) {
+                        Text("Bottoms")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 30))
+                            .padding(5)
+                    }
                 }
                 NavigationLink(destination: TypeView(CC:CC, type: "Shoes")) {
                     Text("Shoes")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 30))
+                        .padding(5)
                 }
+                Spacer()
                 Button {
-                    CC.clearCloset()
+                    warning = true
                 } label: {
-                    Text("Clear Closet")
-                        .padding()
+                    HStack {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.system(size: 20))
+                        Text("Clear Closet")
+                            .font(.headline)
+                    }
                 }
-                Button {
-                    CC.resetDummy()
-                } label: {
-                    Text("Reset Dummy")
+                .alert(isPresented: $warning) {
+                    Alert(
+                        title: Text("Are you sure you want to clear your closet?"),
+                        message: Text("You cannot undo this action"),
+                        primaryButton: .destructive(Text("Clear")) {
+                            CC.clearCloset()
+                        },
+                        secondaryButton: .cancel()
+                    )
                 }
+                Spacer()
+                    .frame(height:30)
             }
         }
     }

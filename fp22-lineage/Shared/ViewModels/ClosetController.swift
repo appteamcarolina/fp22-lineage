@@ -174,6 +174,25 @@ class ClosetController: ObservableObject {
         }
     }
     
+    func clearClothing(type: String) {
+        reset(type: type)
+        switch type {
+        case "Hats":
+            self.Hats = [Clothing(type: "Hats")]
+        case "Jackets":
+            self.Jackets = [Clothing(type: "Jackets")]
+        case "Tops":
+            self.Tops = [Clothing(type: "Tops")]
+        case "Bottoms":
+            self.Bottoms = [Clothing(type: "Bottoms")]
+        case "Shoes":
+            self.Shoes = [Clothing(type: "Shoes")]
+        default:
+            return
+        }
+        saveCloset()
+    }
+    
     func addClothing(clothing: Clothing) {
         let type = clothing.type
         switch type {

@@ -104,9 +104,11 @@ struct PictureSettingsView: View {
                     Spacer()
                 }
                 Text("When taking an image of an article of clothing we recommend wearing it and having it fill the frame as much as possible")
+                    .multilineTextAlignment(.center)
                     .frame(width:350)
                     .padding(10)
                 Text("Additionally, make sure you are standing in the same stance as in your avatar photo, and the camera is at the same angle")
+                    .multilineTextAlignment(.center)
                     .frame(width:350)
                     .padding(10)
                 Button {
