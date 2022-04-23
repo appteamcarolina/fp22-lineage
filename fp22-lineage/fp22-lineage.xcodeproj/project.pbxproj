@@ -43,6 +43,8 @@
 		70AC3FEE28120D5900BE475D /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEC28120D5900BE475D /* TypeView.swift */; };
 		70AC3FF02812321D00BE475D /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEF2812321D00BE475D /* Dummy.swift */; };
 		70AC3FF12812321D00BE475D /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FEF2812321D00BE475D /* Dummy.swift */; };
+		70AC3FF328139FA100BE475D /* PictureSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FF228139FA100BE475D /* PictureSettingsView.swift */; };
+		70AC3FF428139FA100BE475D /* PictureSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AC3FF228139FA100BE475D /* PictureSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,7 @@
 		70AC3FE92811F1DD00BE475D /* ClosetClothingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetClothingView.swift; sourceTree = "<group>"; };
 		70AC3FEC28120D5900BE475D /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		70AC3FEF2812321D00BE475D /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		70AC3FF228139FA100BE475D /* PictureSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,7 @@
 				70AC3FE32810AC8300BE475D /* ClosetView.swift */,
 				70AC3FE92811F1DD00BE475D /* ClosetClothingView.swift */,
 				70AC3FEC28120D5900BE475D /* TypeView.swift */,
+				70AC3FF228139FA100BE475D /* PictureSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -389,6 +393,7 @@
 				70AC3FED28120D5900BE475D /* TypeView.swift in Sources */,
 				70179036280CB43D00ECADDB /* ImagePicker.swift in Sources */,
 				70AC3FEA2811F1DD00BE475D /* ClosetClothingView.swift in Sources */,
+				70AC3FF328139FA100BE475D /* PictureSettingsView.swift in Sources */,
 				707B90072805EB4D00AFA03B /* NewPictureViewModel.swift in Sources */,
 				707B8FF8280529C200AFA03B /* Line.swift in Sources */,
 				70179033280CA28500ECADDB /* ClosetController.swift in Sources */,
@@ -411,6 +416,7 @@
 				70AC3FEE28120D5900BE475D /* TypeView.swift in Sources */,
 				70179037280CB43D00ECADDB /* ImagePicker.swift in Sources */,
 				70AC3FEB2811F1DD00BE475D /* ClosetClothingView.swift in Sources */,
+				70AC3FF428139FA100BE475D /* PictureSettingsView.swift in Sources */,
 				707B90082805EB4D00AFA03B /* NewPictureViewModel.swift in Sources */,
 				707B8FF9280529C200AFA03B /* Line.swift in Sources */,
 				70179034280CA28500ECADDB /* ClosetController.swift in Sources */,

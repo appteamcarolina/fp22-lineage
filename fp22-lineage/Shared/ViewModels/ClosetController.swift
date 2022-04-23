@@ -205,6 +205,7 @@ class ClosetController: ObservableObject {
     
     func deleteClothing(clothing: Clothing) {
         let type = clothing.type
+        reset(type: type)
         switch type {
         case "Hats":
             if let index = Hats.firstIndex(where: { $0.id == clothing.id }) {
@@ -229,7 +230,6 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        reset(type: type)
         saveCloset()
     }
     

@@ -15,6 +15,8 @@ struct CarouselView: View {
     
     @State var warning = false
     
+    @State var tucked = false
+    
     @ObservedObject var CC: ClosetController
     @Binding var selectedTab: Int
     
@@ -37,14 +39,16 @@ struct CarouselView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 378, height: 504)
-                    if (CC.bottomsIndex != 0) {
-                        let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
-                        Image(uiImage: bottoms.image)
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(bottoms.border)
-                            .frame(width: bottoms.width, height: bottoms.height)
-                            .position(bottoms.location)
+                    if !tucked {
+                        if (CC.bottomsIndex != 0) {
+                            let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
+                            Image(uiImage: bottoms.image)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(bottoms.border)
+                                .frame(width: bottoms.width, height: bottoms.height)
+                                .position(bottoms.location)
+                        }
                     }
                     if (CC.shoesIndex != 0) {
                         let shoes = CC.getClothing(type: "Shoes", index: CC.shoesIndex)
@@ -63,6 +67,17 @@ struct CarouselView: View {
                             .clipShape(top.border)
                             .frame(width: top.width, height: top.height)
                             .position(top.location)
+                    }
+                    if tucked {
+                        if (CC.bottomsIndex != 0) {
+                            let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
+                            Image(uiImage: bottoms.image)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(bottoms.border)
+                                .frame(width: bottoms.width, height: bottoms.height)
+                                .position(bottoms.location)
+                        }
                     }
                     if (CC.jacketIndex != 0) {
                         let jacket = CC.getClothing(type: "Jackets", index: CC.jacketIndex)
@@ -256,24 +271,39 @@ struct CarouselView: View {
                     }
                 }
             }.frame(height: 504)
-            Button {
-                warning = true
-            } label: {
-                Text("Reset Avatar")
-                    .font(.headline)
-                    .foregroundColor(Color.black)
-                    .padding()
-            }
-            .alert(isPresented: $warning) {
-                Alert(
-                    title: Text("Are you sure you want to reset your avatar?"),
-                    message: Text("Your saved clothes will likely no longer fit correctly"),
-                    primaryButton: .destructive(Text("Reset")) {
-                        CC.resetDummy()
-                        dummy = CC.dummy
-                    },
-                    secondaryButton: .cancel()
-                )
+            HStack {
+                Button {
+                    warning = true
+                } label: {
+                    Text("Reset Avatar")
+                        .font(.headline)
+                        .foregroundColor(Color.black)
+                        .padding()
+                }
+                Button {
+                    tucked.toggle()
+                } label: {
+                    HStack {
+                        if tucked {
+                            Image(systemName: "checkmark.square")
+                        } else {
+                            Image(systemName: "square")
+                        }
+                        Text("Tucked?")
+                        
+                    }
+                }
+                .alert(isPresented: $warning) {
+                    Alert(
+                        title: Text("Are you sure you want to reset your avatar?"),
+                        message: Text("Your saved clothes will likely no longer fit correctly"),
+                        primaryButton: .destructive(Text("Reset")) {
+                            CC.resetDummy()
+                            dummy = CC.dummy
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }.sheet(isPresented: $dummy.choosingPhoto, onDismiss: {
             CC.setDummy(dummy: dummy)

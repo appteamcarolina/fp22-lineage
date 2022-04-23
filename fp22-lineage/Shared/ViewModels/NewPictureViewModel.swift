@@ -26,9 +26,13 @@ class NewPictureViewModel: ObservableObject {
     }
     
     func endDrawing(clothing: Clothing) -> Clothing {
-        currentLine.points.append(currentLine.points[0])
-        let clothingNew = clothing.updateLine(line: currentLine)
-        return clothingNew
+        if (currentLine.points.count>0) {
+            currentLine.points.append(currentLine.points[0])
+            let clothingNew = clothing.updateLine(line: currentLine)
+            return clothingNew
+        } else {
+            return clothing
+        }
     }
     
     func resetDrawing(clothing: Clothing) -> Clothing {

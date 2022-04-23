@@ -71,7 +71,6 @@ struct PreviewView: View {
                 Button {
                     CC.addClothing(clothing: newClothing)
                     self.showPreview = false
-                    self.selectedTab = 1
                 } label: {
                     Image(systemName: "checkmark.circle")
                         .resizable()

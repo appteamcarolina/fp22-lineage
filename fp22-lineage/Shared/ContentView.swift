@@ -24,7 +24,7 @@ struct ContentView: View {
                     }
                 }
                 .tag(1)
-            NewPictureView(CC:CC, selectedTab: $selectedTab)
+            PictureSettingsView(CC:CC, selectedTab: $selectedTab)
                 .tabItem {
                     VStack {
                         Image(systemName: "camera.fill")
