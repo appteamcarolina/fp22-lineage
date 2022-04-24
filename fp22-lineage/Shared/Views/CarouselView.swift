@@ -50,15 +50,6 @@ struct CarouselView: View {
                                 .position(bottoms.location)
                         }
                     }
-                    if (CC.shoesIndex != 0) {
-                        let shoes = CC.getClothing(type: "Shoes", index: CC.shoesIndex)
-                        Image(uiImage: shoes.image)
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(shoes.border)
-                            .frame(width: shoes.width, height: shoes.height)
-                            .position(shoes.location)
-                    }
                     if (CC.topIndex != 0) {
                         let top = CC.getClothing(type: "Tops", index: CC.topIndex)
                         Image(uiImage: top.image)
@@ -96,6 +87,15 @@ struct CarouselView: View {
                             .clipShape(hat.border)
                             .frame(width: hat.width, height: hat.height)
                             .position(hat.location)
+                    }
+                    if (CC.shoesIndex != 0) {
+                        let shoes = CC.getClothing(type: "Shoes", index: CC.shoesIndex)
+                        Image(uiImage: shoes.image)
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(shoes.border)
+                            .frame(width: shoes.width, height: shoes.height)
+                            .position(shoes.location)
                     }
                     HStack {
                         Rectangle()
