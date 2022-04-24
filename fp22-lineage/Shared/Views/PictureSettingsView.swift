@@ -140,7 +140,7 @@ struct PictureSettingsView: View {
                     Alert(title: Text("You must create an avatar first"), message: Text(""), dismissButton: .default(Text("OK")))
                 }
                 .background(
-                    NavigationLink(destination: NewPictureView(CC:CC, selectedTab: $selectedTab, clothing: clothing, selected: $selected),
+                    NavigationLink(destination: NewPictureView(CC:CC, selectedTab: $selectedTab, clothing: $clothing, selected: $selected),
                         isActive: $selected) { EmptyView() }
                 )
                 Spacer()

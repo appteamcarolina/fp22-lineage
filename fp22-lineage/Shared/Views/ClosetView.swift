@@ -28,43 +28,37 @@ struct ClosetView: View {
                     .frame(width:300)
                     .padding()
                     .multilineTextAlignment(.center)
-                HStack {
+                Group {
                     NavigationLink(destination: TypeView(CC:CC, type: "Hats")) {
                         Text("Hats")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 30))
                             .padding(5)
                     }
-                    Spacer()
-                        .frame(width: 30)
                     NavigationLink(destination: TypeView(CC:CC, type: "Jackets")) {
                         Text("Jackets")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 30))
                             .padding(5)
                     }
-                }
-                HStack {
                     NavigationLink(destination: TypeView(CC:CC, type: "Tops")) {
                         Text("Tops")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 30))
                             .padding(5)
                     }
-                    Spacer()
-                        .frame(width: 30)
                     NavigationLink(destination: TypeView(CC:CC, type: "Bottoms")) {
                         Text("Bottoms")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 30))
                             .padding(5)
                     }
-                }
-                NavigationLink(destination: TypeView(CC:CC, type: "Shoes")) {
-                    Text("Shoes")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 30))
-                        .padding(5)
+                    NavigationLink(destination: TypeView(CC:CC, type: "Shoes")) {
+                        Text("Shoes")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 30))
+                            .padding(5)
+                    }
                 }
                 Spacer()
                 Button {

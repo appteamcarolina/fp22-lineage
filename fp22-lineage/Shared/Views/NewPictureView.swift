@@ -16,12 +16,12 @@ struct NewPictureView: View {
     
     @ObservedObject var CC: ClosetController
     @Binding var selectedTab: Int
-    @State var clothing: Clothing
+    @Binding var clothing: Clothing
     
-    init(CC: ClosetController, selectedTab: Binding<Int>, clothing: Clothing, selected: Binding<Bool>) {
+    init(CC: ClosetController, selectedTab: Binding<Int>, clothing: Binding<Clothing>, selected: Binding<Bool>) {
         self.CC = CC
         self._selectedTab = selectedTab
-        self.clothing = clothing
+        self._clothing = clothing
         self._selected = selected
     }
      
@@ -62,22 +62,6 @@ struct NewPictureView: View {
                     Label("Clear", systemImage: "xmark")
                 }
                 Spacer()
-                /*
-                Button {
-                    clothing = Clothing(mult: 1, line: defaultLine)
-                    clothing = vm.resetDrawing(clothing: clothing)
-                    selected = false
-                } label: {
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .scaledToFit()
-                        .foregroundColor(.white)
-                        .background(Color.red)
-                        .clipShape(Circle())
-                        .padding(2)
-                }
-                 */
                 Button {
                     clothing = vm.endDrawing(clothing: clothing)
                     showPreview = true
@@ -88,15 +72,11 @@ struct NewPictureView: View {
             Text("Use your finger to outline your item of clothing")
             Spacer()
         }
-        /*
-        .onDisappear {
-            selectedTab = 1
-        }
-        */
         .sheet(isPresented: $showPreview, onDismiss: {
+            CC.saveCloset()
             selected = false
             selectedTab = 1
-            CC.saveCloset()
+            clothing = Clothing()
         }) {
             PreviewView(CC: CC, clothing: clothing, selectedTab: $selectedTab, showPreview: $showPreview)
         }

@@ -96,17 +96,34 @@ class ClosetController: ObservableObject {
     }
     
     func saveCloset() {
+        saveType(type: "Hats")
+        saveType(type: "Jackets")
+        saveType(type: "Tops")
+        saveType(type: "Bottoms")
+        saveType(type: "Shoes")
+    }
+    
+    func saveType(type: String) {
         do {
-            let encodedHats = try JSONEncoder().encode(Hats)
-            UserDefaults.standard.set(encodedHats, forKey: "Hats")
-            let encodedJackets = try JSONEncoder().encode(Jackets)
-            UserDefaults.standard.set(encodedJackets, forKey: "Jackets")
-            let encodedTops = try JSONEncoder().encode(Tops)
-            UserDefaults.standard.set(encodedTops, forKey: "Tops")
-            let encodedBottoms = try JSONEncoder().encode(Bottoms)
-            UserDefaults.standard.set(encodedBottoms, forKey: "Bottoms")
-            let encodedShoes = try JSONEncoder().encode(Shoes)
-            UserDefaults.standard.set(encodedShoes, forKey: "Shoes")
+            switch type {
+            case "Hats":
+                let encodedHats = try JSONEncoder().encode(Hats)
+                UserDefaults.standard.set(encodedHats, forKey: "Hats")
+            case "Jackets":
+                let encodedJackets = try JSONEncoder().encode(Jackets)
+                UserDefaults.standard.set(encodedJackets, forKey: "Jackets")
+            case "Tops":
+                let encodedTops = try JSONEncoder().encode(Tops)
+                UserDefaults.standard.set(encodedTops, forKey: "Tops")
+            case "Bottoms":
+                let encodedBottoms = try JSONEncoder().encode(Bottoms)
+                UserDefaults.standard.set(encodedBottoms, forKey: "Bottoms")
+            case "Shoes":
+                let encodedShoes = try JSONEncoder().encode(Shoes)
+                UserDefaults.standard.set(encodedShoes, forKey: "Shoes")
+            default:
+                return
+            }
         } catch {
             print(error)
         }
@@ -190,7 +207,7 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        saveCloset()
+        saveType(type: type)
     }
     
     func addClothing(clothing: Clothing) {
@@ -214,7 +231,8 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        saveCloset()
+        saveIndexes()
+        saveType(type: type)
     }
     
     func setDummy(dummy: Dummy) {
@@ -249,7 +267,7 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        saveCloset()
+        saveType(type: type)
     }
     
     func reset(type: String) {
