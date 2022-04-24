@@ -22,12 +22,15 @@ class ClosetController: ObservableObject {
     @Published var bottomsIndex: Int = 0
     @Published var shoesIndex: Int = 0
     
+    @Published var tucked = false
+    
     @Published var dummy: Dummy = Dummy()
     
     init() {
         getCloset()
         getIndexes()
         getDummy()
+        getTucked()
     }
     
     func getCloset() {
@@ -95,6 +98,18 @@ class ClosetController: ObservableObject {
         }
     }
     
+    func getTucked() {
+        do {
+            if let decodedTucked = UserDefaults.standard.data(forKey: "tucked") {
+                let decodedTucked = try JSONDecoder().decode(Bool.self, from: decodedTucked)
+                self.tucked = decodedTucked
+            }
+        } catch {
+            print(error)
+        }
+
+    }
+    
     func saveCloset() {
         saveType(type: "Hats")
         saveType(type: "Jackets")
@@ -130,17 +145,34 @@ class ClosetController: ObservableObject {
     }
     
     func saveIndexes() {
+        saveIndex(type: "Hats")
+        saveIndex(type: "Jackets")
+        saveIndex(type: "Tops")
+        saveIndex(type: "Bottoms")
+        saveIndex(type: "Shoes")
+    }
+    
+    func saveIndex(type: String) {
         do {
-            let encodedHatIndex = try JSONEncoder().encode(hatIndex)
-            UserDefaults.standard.set(encodedHatIndex, forKey: "hatIndex")
-            let encodedJacketIndex = try JSONEncoder().encode(jacketIndex)
-            UserDefaults.standard.set(encodedJacketIndex, forKey: "jacketIndex")
-            let encodedBottomsIndex = try JSONEncoder().encode(bottomsIndex)
-            UserDefaults.standard.set(encodedBottomsIndex, forKey: "bottomsIndex")
-            let encodedTopIndex = try JSONEncoder().encode(topIndex)
-            UserDefaults.standard.set(encodedTopIndex, forKey: "topIndex")
-            let encodedShoesIndex = try JSONEncoder().encode(shoesIndex)
-            UserDefaults.standard.set(encodedShoesIndex, forKey: "shoesIndex")
+            switch type {
+            case "Hats":
+                let encodedHatIndex = try JSONEncoder().encode(hatIndex)
+                UserDefaults.standard.set(encodedHatIndex, forKey: "hatIndex")
+            case "Jackets":
+                let encodedJacketIndex = try JSONEncoder().encode(jacketIndex)
+                UserDefaults.standard.set(encodedJacketIndex, forKey: "jacketIndex")
+            case "Tops":
+                let encodedTopIndex = try JSONEncoder().encode(topIndex)
+                UserDefaults.standard.set(encodedTopIndex, forKey: "topIndex")
+            case "Bottoms":
+                let encodedBottomsIndex = try JSONEncoder().encode(bottomsIndex)
+                UserDefaults.standard.set(encodedBottomsIndex, forKey: "bottomsIndex")
+            case "Shoes":
+                let encodedShoesIndex = try JSONEncoder().encode(shoesIndex)
+                UserDefaults.standard.set(encodedShoesIndex, forKey: "shoesIndex")
+            default:
+                return
+            }
         } catch {
             print(error)
         }
@@ -153,6 +185,20 @@ class ClosetController: ObservableObject {
         } catch {
             print(error)
         }
+    }
+    
+    func saveTucked() {
+        do {
+            let encodedTucked = try JSONEncoder().encode(tucked)
+            UserDefaults.standard.set(encodedTucked, forKey: "tucked")
+        } catch {
+            print(error)
+        }
+    }
+    
+    func toggleTucked() {
+        tucked.toggle()
+        saveTucked()
     }
     
     func clearCloset() {
@@ -231,7 +277,7 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        saveIndexes()
+        saveIndex(type: type)
         saveType(type: type)
     }
     
@@ -285,7 +331,7 @@ class ClosetController: ObservableObject {
         default:
             return
         }
-        saveIndexes()
+        saveIndex(type: type)
     }
     
     func changeHatIndex(val: Int, len: Int) {
@@ -296,7 +342,7 @@ class ClosetController: ObservableObject {
                 hatIndex = (hatIndex + val)%len
             }
         }
-        saveIndexes()
+        saveIndex(type: "Hats")
     }
     
     func changeJacketIndex(val: Int, len: Int) {
@@ -307,7 +353,7 @@ class ClosetController: ObservableObject {
                 jacketIndex = (jacketIndex + val)%len
             }
         }
-        saveIndexes()
+        saveIndex(type: "Jackets")
     }
     
     func changeTopIndex(val: Int, len: Int) {
@@ -318,7 +364,7 @@ class ClosetController: ObservableObject {
                 topIndex = (topIndex + val)%len
             }
         }
-        saveIndexes()
+        saveIndex(type: "Tops")
     }
     
     func changeBottomsIndex(val: Int, len: Int) {
@@ -329,7 +375,7 @@ class ClosetController: ObservableObject {
                 bottomsIndex = (bottomsIndex + val)%len
             }
         }
-        saveIndexes()
+        saveIndex(type: "Bottoms")
     }
     
     func changeShoesIndex(val: Int, len: Int) {
@@ -340,6 +386,6 @@ class ClosetController: ObservableObject {
                 shoesIndex = (shoesIndex + val)%len
             }
         }
-        saveIndexes()
+        saveIndex(type: "Shoes")
     }
 }

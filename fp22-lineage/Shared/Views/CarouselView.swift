@@ -15,8 +15,6 @@ struct CarouselView: View {
     
     @State var warning = false
     
-    @State var tucked = false
-    
     @ObservedObject var CC: ClosetController
     @Binding var selectedTab: Int
     
@@ -39,7 +37,7 @@ struct CarouselView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 378, height: 504)
-                    if !tucked {
+                    if !(CC.tucked) {
                         if (CC.bottomsIndex != 0) {
                             let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
                             Image(uiImage: bottoms.image)
@@ -59,7 +57,7 @@ struct CarouselView: View {
                             .frame(width: top.width, height: top.height)
                             .position(top.location)
                     }
-                    if tucked {
+                    if CC.tucked {
                         if (CC.bottomsIndex != 0) {
                             let bottoms = CC.getClothing(type: "Bottoms", index: CC.bottomsIndex)
                             Image(uiImage: bottoms.image)
@@ -281,10 +279,10 @@ struct CarouselView: View {
                         .padding()
                 }
                 Button {
-                    tucked.toggle()
+                    CC.toggleTucked()
                 } label: {
                     HStack {
-                        if tucked {
+                        if (CC.tucked) {
                             Image(systemName: "checkmark.square")
                         } else {
                             Image(systemName: "square")
